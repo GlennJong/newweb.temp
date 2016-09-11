@@ -1,0 +1,15 @@
+
+*.scssc
+
+temp/
+svg/.DS_Store
+
+.DS_Store
+
+*.rb
+
+compass_app_log.txt
+
+*.jpg
+
+*.png

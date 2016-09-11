@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Glenn</title>
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<!-- <script src="js/pace.js"></script> -->
+	<link rel="stylesheet" href="stylesheets/style.css">
+	<!-- <link rel="stylesheet" href="stylesheets/pace.css"> -->
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Modal -->
+		<div id="aboutMe" class="modal">
+			<div class="modal__content">
+			 	<div class="modal__content--head"></div>
+			 	<div class="modal__content--body">text</div>
+			 	<div class="modal__content--foot"></div>
+			</div>
+		</div>
+
+		<!-- Main -->
+		<div class="main">
+
+			<!-- SubNav -->
+			<div id="subnav" class="main__subnav subnav">
+				<button id="subnavClose" class="main__subnav__button subnav-close">
+					<div class="icon"></div>
+					<span>close</span>
+				</button>
+				<button data-target="illus" class="main__subnav__button sectionControl subnav-illus">
+					<div class="icon"></div>
+					<span>illustration</span>
+				</button>
+				<button data-target="photos" class="main__subnav__button sectionControl subnav-photos">
+					<div class="icon"></div>
+					<span>photos</span>
+				</button>
+				<button data-target="portfolio" class="main__subnav__button sectionControl subnav-portfolio">
+					<div class="icon"></div>
+					<span>portfolio</span>
+				</button>
+				<button data-target="web" class="main__subnav__button sectionControl subnav-web">
+					<div class="icon"></div>
+					<span>web</span>
+				</button>
+			</div>
+			<button id="backControl" class="main__back">
+				<svg viewbox="0, 0, 70, 70">
+					<polyline points="4.967,31.666 35.201,9.145 65.034,31.181"/>
+					<polyline points="51.917,36.083 51.917,61.083 17.917,61.083 17.917,36.083"/>
+				</svg>
+			</button>
+
+			<!-- Main Content -->
+			<div id="illus" class="main__section section">
+				<div class="section__title">
+					<h1>illustration</h1>
+					<hr>
+				</div>
+				<div class="section__intro">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore nam accusamus porro minus, atque hic. Quo itaque, repellendus in, officiis ea optio repellat culpa ipsa blanditiis ducimus. Dicta, quisquam.</p>
+				</div>
+				<div class="section__content">
+					<div class="illus__content">
+						<div class="row">
+							<div class="col-tight">
+								<div class="illus__content--item item">
+									<a href="" class="item__img">
+										<img src="http://placehold.it/200x200" alt="">
+									</a>
+									<div class="item__name">
+										<p>Lorem ipsum</p>
+										<a href="#pictureView" class="item__name__ball ball modalControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="photos" class="main__section section">
+				<div class="section__title">
+					<h1>photos</h1>
+					<hr>
+				</div>
+				<div class="section__article">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore nam accusamus porro minus, atque hic. Quo itaque, repellendus in, officiis ea optio repellat culpa ipsa blanditiis ducimus. Dicta, quisquam.</p>
+				</div>
+			</div>
+
+			<div id="portfolio" class="main__section section">
+				<div class="section__title">
+					<h1>portfolio</h1>
+					<hr>
+				</div>
+				<div class="section__article">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore nam accusamus porro minus, atque hic. Quo itaque, repellendus in, officiis ea optio repellat culpa ipsa blanditiis ducimus. Dicta, quisquam.</p>
+				</div>
+			</div>
+
+			<div id="web" class="main__section section">
+				<div class="section__title">
+					<h1>web</h1>
+					<hr>
+				</div>
+				<div class="section__article">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore nam accusamus porro minus, atque hic. Quo itaque, repellendus in, officiis ea optio repellat culpa ipsa blanditiis ducimus. Dicta, quisquam.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Heading -->
+		<div id="heading" class="heading">
+			<div class="heading__myname myname">
+				<svg id="title" viewbox="0, 0, 500, 170">
+					<clippath id="glenn">
+						<path d="M58.153,168.636c-11.818,0.282-21.727-1.462-30.341-6.45
+							c-7.459-4.317-13.6-10.603-17.386-18.856c-7.141-15.565-7.333-31.544-3.534-47.852c5.779-24.807,16.798-47.04,33.316-66.425
+							c7.305-8.574,15.48-16.47,25.515-21.719c13.764-7.199,28.194-10.528,43.79-5.591c9.552,3.023,17.38,8.332,24.154,15.418
+							c3.421,3.58,5.235,7.99,4.992,13.042c-0.238,4.945-2.87,8.216-7.36,9.256c-2.744,0.636-5.101,0.004-6.721-2.46
+							c-5.071-7.711-12.786-11.717-21.29-13.667c-11.898-2.729-22.712,0.557-32.406,7.95c-6.826,5.205-12.053,11.646-17.234,18.489
+							c-11.902,15.721-20.61,32.683-24.635,52.026c-1.902,9.143-2.114,18.237,0.439,27.252c2.253,7.96,8.072,12.215,15.691,14.546
+							c7.149,2.187,14.294,1.255,21.398,0.084c12.192-2.005,23.939-5.709,34.756-11.63c10.295-5.637,20.149-12.134,26.911-22.143
+							c2.94-4.352,2.187-5.657-2.785-6.957c-13.278-3.479-25.942-0.809-38.397,3.73c-5.266,1.918-10.333,4.385-15.61,6.265
+							c-2.515,0.895-5.317,1.42-7.979,1.39c-8.349-0.097-12.829-8.423-8.785-15.698c2.688-4.835,6.587-8.439,11.453-10.606
+							c14.707-6.553,29.82-11.695,46.248-11.505c7.178,0.083,14.253,0.77,21.178,2.727c7.341,2.076,13.485,6.175,17.603,12.46
+							c5.265,8.036,5.096,16.849,1.042,25.371c-3.815,8.023-8.987,15.048-16.352,20.372c-5.336,3.856-9.848,9.099-15.574,12.118
+							c-10.904,5.749-21.876,11.614-34.073,14.47C76.371,166.337,66.619,168.904,58.153,168.636z"/>
+						<path d="M193.574,136.556c6.686-5.341,13.514-9.427,18.646-15.649
+							c1.52-1.842,2.961-3.874,4.854-5.24c1.484-1.071,3.817-2.01,5.386-1.583c1.218,0.333,1.841,2.86,2.718,4.418
+							c0.081,0.142,0.102,0.33,0.105,0.498c0.307,14.168-9.258,37.653-28.299,41.816c-8.943,1.954-17.923-1.752-22.771-9.636
+							c-4.063-6.606-6.162-13.493-7.3-21.339c-1.684-11.612-0.805-22.966-0.496-34.485c0.558-20.717,5.229-40.799,8.688-61.063
+							c0.785-4.601,2.777-9.118,4.887-13.336c2.292-4.583,5.772-6.021,10.061-5.266c4.004,0.706,7.289,3.711,7.753,8.372
+							c0.445,4.476,0.308,9.104-0.283,13.571c-1.519,11.47-3.894,22.839-5.075,34.337c-1.63,15.868-4.161,31.732-2.733,47.774
+							C190.203,125.239,190.986,130.736,193.574,136.556z"/>
+						<path d="M240.151,126.74c0.306-16.76,5.059-30.59,15.033-42.263
+							c7.974-9.33,18.188-15,30.831-14.637c14.929,0.43,22.329,13.233,15.802,26.675c-5.984,12.322-14.583,22.22-26.751,28.642
+							c-3.389,1.789-7.33,2.605-11.09,3.595c-3.533,0.931-4.359,2.033-2.964,5.383c2.952,7.09,7.316,11.131,16.029,6.671
+							c9.974-5.107,19.584-10.929,29.34-16.458c1.929-1.094,3.713-2.477,5.717-3.38c3.492-1.572,6.094-0.149,5.743,3.603
+							c-0.338,3.643-1.322,7.464-2.998,10.702c-7.429,14.334-19.022,23.697-34.7,27.929c-6.48,1.748-13.107,1.97-18.998-1.02
+							c-9.931-5.043-17.111-12.888-19.605-24.118C240.622,133.932,240.486,129.626,240.151,126.74z M261.811,113.665
+							c10.225-2.809,25.626-19.641,25.168-27.224C274.727,83.725,261.511,102.463,261.811,113.665z"/>
+						<path d="M380.998,89.869c-1.865,1.887-3.855,3.665-5.575,5.677
+							c-7.44,8.703-12.913,18.336-14.231,29.991c-0.896,7.937-1.971,15.856-3.188,23.749c-0.378,2.454-1.027,5.089-2.352,7.122
+							c-2.339,3.582-6.771,4.703-10.392,3.299c-4.436-1.716-7.134-5.858-6.979-10.873c0.406-13.006,2.303-25.7,6.235-38.204
+							c2.014-6.41,2.151-13.411,3.082-20.151c0.06-0.426-0.351-0.917-0.818-2.042c-1.506,0.772-2.969,1.385-4.281,2.231
+							c-1.711,1.102-3.187,2.6-4.963,3.552c-4.269,2.292-7.836,1.728-10.722-1.411c-2.139-2.325-2.575-8.218-0.436-11.073
+							c1.499-2,3.4-3.798,5.418-5.287c3.144-2.323,6.366-4.671,9.877-6.328c3.33-1.572,7.016-2.854,10.65-3.214
+							c5.229-0.517,9.047,2.454,11.652,6.891c0.68,1.156,1.135,2.443,1.875,4.071c2.199-1.245,4.227-2.334,6.196-3.518
+							c7.498-4.5,19.379-4.363,25.403,6.817c3.992,7.404,4.788,15.289,5.21,23.226c0.764,14.285,1.07,28.604,1.14,42.908
+							c0.018,3.388-0.938,7.238-2.724,10.071c-3.354,5.321-9.053,5.026-12.428-0.291c-1.321-2.082-2.465-4.623-2.635-7.029
+							c-0.832-11.823-1.389-23.668-1.88-35.512c-0.246-5.938-0.027-11.896-0.264-17.836c-0.086-2.127-0.896-4.225-1.378-6.336
+							C381.997,90.204,381.496,90.036,380.998,89.869z"/>
+						<path d="M472.76,89.869c-1.865,1.887-3.855,3.665-5.576,5.677
+							c-7.438,8.703-12.912,18.336-14.23,29.991c-0.895,7.937-1.971,15.856-3.187,23.749c-0.38,2.454-1.026,5.089-2.353,7.122
+							c-2.339,3.582-6.771,4.703-10.391,3.299c-4.437-1.716-7.135-5.858-6.979-10.873c0.404-13.006,2.305-25.7,6.235-38.204
+							c2.015-6.41,2.15-13.411,3.084-20.151c0.058-0.426-0.353-0.917-0.82-2.042c-1.505,0.772-2.97,1.385-4.282,2.231
+							c-1.71,1.102-3.187,2.6-4.964,3.552c-4.268,2.292-7.834,1.728-10.721-1.411c-2.139-2.325-2.573-8.218-0.435-11.073
+							c1.499-2,3.4-3.798,5.417-5.287c3.145-2.323,6.366-4.671,9.878-6.328c3.33-1.572,7.017-2.854,10.649-3.214
+							c5.229-0.517,9.047,2.454,11.654,6.891c0.678,1.156,1.134,2.443,1.874,4.071c2.198-1.245,4.227-2.334,6.196-3.518
+							c7.498-4.5,19.379-4.363,25.403,6.817c3.992,7.404,4.787,15.289,5.211,23.226c0.761,14.285,1.071,28.604,1.138,42.908
+							c0.019,3.388-0.938,7.238-2.724,10.071c-3.353,5.321-9.051,5.026-12.427-0.291c-1.322-2.082-2.465-4.623-2.635-7.029
+							c-0.833-11.823-1.389-23.668-1.88-35.512c-0.246-5.938-0.026-11.896-0.266-17.836c-0.084-2.127-0.896-4.225-1.375-6.336
+							C473.758,90.204,473.26,90.036,472.76,89.869z"/>
+					</clippath>
+					<path id="g" d="M137.335,41.004c0,0-11.844-33.335-46.409-30.507
+						c-34.565,2.829-125.598,120.406-43.164,148.64c38.296,13.955,111.966-42.839,93.792-61.338
+						c-18.173-18.499-57.768-7.788-77.889,4.868"/>
+					<path id="l" d="M188.613,20.558c0,0-31.133,138.577,6.016,128.842
+						c18.325-6.49,27.832-35.316,27.832-35.316"/>
+					<path id="e" d="M271.458,122.768c0,0,18.735-12.311,21.007-27.89
+						c2.271-15.578-0.653-24.729-18.5-14.474c-17.848,10.255-38.975,62.925-6.165,73.541c20.231,6.546,46.085-30.832,46.085-30.832"/>
+					<path id="n1" d="M332.708,85.824c0,0,12.894-12.616,21.034-4.101
+						c10.248,10.719-7.078,51.368-6.104,72.991c0,0,2.598-73.143,33.104-74.441c19.146-2.596,14.278,74.441,14.278,74.441"/>
+					<path id="n2" d="M424.708,85.824c0,0,12.894-12.616,21.034-4.101
+						c10.248,10.719-7.078,51.368-6.104,72.991c0,0,2.598-73.143,33.104-74.441c19.146-2.596,14.278,74.441,14.278,74.441"/>
+				</svg>
+				<a href="#aboutMe" class="heading__myname__ball ball modalControl">
+					<span></span>
+				</a>
+			</div>
+			<div class="heading__welcome">
+				<p>Hi, my name is Glenn Jong. Welcome to my site:)</p>
+			</div>
+			<div class="heading__nav nav">
+				<button data-target="illus" class="nav__btn">
+					<svg viewbox="0, 0, 100, 100">
+						<path id="p1" d="M88.615,28.102L34.204,82.511l-22.646,6.985l3.369-10.624l7.167,7.32l-7.167-7.32l3.218-11.359l15.262,15.264
+							L18.508,67.181l53.914-55.27l7.402,7.375"/>
+						<path id="p2" d="M88.616,28.101l-8.791-8.816L25.974,75.343"/>
+					</svg>
+					<p>illustration</p>
+				</button>
+				<button data-target="photos" class="nav__btn">
+					<svg viewbox="0, 0, 100, 100">
+						<path id="p3" d="M65.917,39.5c-4.456-3.942-17.773-5.295-24.141,2.197c-7.151,8.417-6.787,16.729-1.066,24.908
+							c5.721,8.18,24.096,10.74,31.016-3.267c6.924-14.005-5.312-23.472-5.312-23.472l6.113-8.17
+							c-17.553-11.062-29.986-3.042-33.92-0.729c-3.934,2.315-12.448,9.945-11.692,25.417C27.671,71.86,40.089,83.993,56.473,83.19
+							c16.382-0.8,27.083-14.8,27.313-29.269c0.226-13.938-11.259-22.225-11.259-22.225l2.293-2.82"/>
+						<path id="p4" d="M74.98,28.543h13.78c0,0,5.101-0.003,5.101,6.207s0,39.69,0,39.69s-0.24,4.996-3.684,4.996
+							c-1.216,0-8.328,0-20.206,0c0,0-6.289,4.118-15.016,4.118c-8.62,0-14.891-4.118-14.891-4.118c-12.023,0-29.545,0-29.545,0
+							s-5.313-0.272-5.313-4.863c0-4.59,0-41.039,0-41.039s-0.156-4.991,5.448-4.991c6.48,0,11.451,0,11.451,0l0.004,8.247l-8.261-0.031
+							l-0.006-8.215H30.27h4.488v-3.919c0,0-1.044-5.111,6.854-5.111c7.897,0,28.147,0,28.147,0s5.221,0.319,5.221,5.583
+							C74.98,26.49,74.98,28.543,74.98,28.543"/>
+					</svg>
+					<p>photos</p>
+				</button>
+				<button data-target="portfolio" class="nav__btn">
+					<svg viewbox="0, 0, 100, 100">
+						<path id="p5" d="M13.495,34.763h25.491h46.587v38.735c0,4.338-3.352,7.854-7.688,7.854H21.348
+							c-4.337,0-7.853-3.516-7.853-7.854V30.31c0-4.337,3.516-7.853,7.853-7.853h21.154"/>
+						<path id="p6" d="M13.797,34.763h24.658c0,0,1.872-6.408,3.123-10.932c1.071-3.874,3.342-4.891,7.297-4.891
+							c3.955,0,15.329,0,19.285,0s6.317,1.813,7.183,4.891c1.271,4.519,3.008,10.932,3.008,10.932h7.224v-4.452
+							c0-4.338-3.352-7.853-7.688-7.853h-2.86"/>
+					</svg>
+					<p>portfolio</p>
+				</button>
+				<button data-target="web" class="nav__btn">
+					<svg viewbox="0, 0, 100, 100">
+						<path id="p7" d="M10.333,32.365l77.867-0.063v-5.078c0-4.674-3.464-8.725-8.137-8.725h-60.94c-4.675,0-8.923,4.051-8.923,8.725v46.551c0,4.675,4.249,8.725,8.923,8.725h60.94c4.673,0,8.137-4.05,8.137-8.725V32.5"/>
+						<path id="p8" d="M39.694,45.187L28.38,56.5l10.607,10.606L60.2,45.894L70.806,56.5L59.493,67.813"/>
+					</svg>
+					<p>web</p>
+				</button>
+			</div>
+			<div class="heading__progress progress">
+				<div class="progress-inset"></div>
+			</div>
+			<div class="heading__bg"></div>
+		</div>
+
+		<!-- Parallax -->
+		<div class="parallax">
+			<div class="parallax__item green">
+				<i class="green__item" style="top:-5%; left:60%; width:400px;">
+					<img src="img/parallax/1-i3.png" alt="">
+				</i>
+				<div class="green--l1">
+					<i class="green__item" style="top:0%; left:30%; width:200px">
+						<img src="img/parallax/1-s1.png" alt="">
+					</i>
+					<i class="green__item" style="top:20%; left:0%; width:400px">
+						<img src="img/parallax/1-s2.png" alt="">
+					</i>
+					<i class="green__item" style="top:90%; left:15%; width:300px">
+						<img src="img/parallax/1-s3.png" alt="">
+					</i>
+					<i class="green__item" style="top:60%; left:70%; width:400px">
+						<img src="img/parallax/1-s2.png" alt="">
+					</i>
+					<i class="green__item" style="top:25%; left:90%; width:500px">
+						<img src="img/parallax/1-s3.png" alt="">
+					</i>
+				</div>
+				<div class="green--l2">
+					<i class="green__item" style="top:-10%; left:30%; width:250px">
+						<img src="img/parallax/1-c1.png" alt="">
+					</i>
+					<i class="green__item" style="top:10%; left:0%; width:400px">
+						<img src="img/parallax/1-c2.png" alt="">
+					</i>
+					<i class="green__item" style="top:80%; left:15%; width:300px">
+						<img src="img/parallax/1-c3.png" alt="">
+					</i>
+					<i class="green__item" style="top:50%; left:70%; width:400px">
+						<img src="img/parallax/1-c2.png" alt="">
+					</i>
+					<i class="green__item" style="top:15%; left:90%; width:500px">
+						<img src="img/parallax/1-c3.png" alt="">
+					</i>
+				</div>
+				<div class="green--l3">
+					<i class="green__item" style="top:-10%; left:5%">
+						<img src="img/parallax/1-i1.png" alt="">
+					</i>
+					<i class="green__item" style="top:50%; left:0%">
+						<img src="img/parallax/1-i2.png" alt="">
+					</i>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/myscript.js"></script>
+	<script>
+	</script>
+</body>
+</html>

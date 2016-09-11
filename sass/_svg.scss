@@ -1,0 +1,101 @@
+// SVG Animation
+@keyframes svgTrim {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes svgTrimP8 {
+	to {
+		stroke-dasharray: 20 10;
+    	stroke-dashoffset: -6;
+	}
+}
+
+// My Name
+.myname {
+	display: block;
+	svg {
+		width: 500px;
+		height: 170px;
+		path {
+			clip-path: url(#glenn);
+			fill: none;
+			stroke: #FFF;
+			stroke-width: 26px;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			&#g {
+				stroke-dasharray: 470;
+				stroke-dashoffset: 470;
+	    		animation: svgTrim 1s ease .5s forwards;
+			}
+			&#l {
+				stroke-dasharray: 190;
+				stroke-dashoffset: 190;
+	    		animation: svgTrim .4s ease 1.5s forwards;
+			}
+			&#e {
+				stroke-dasharray: 240;
+				stroke-dashoffset: 240;
+	    		animation: svgTrim .6s ease 1.9s forwards;
+			}
+			&#n1 {
+				stroke-dasharray: 270;
+				stroke-dashoffset: 270;
+	    		animation: svgTrim .6s ease 2.5s forwards;
+			}
+			&#n2 {
+				stroke-dasharray: 270;
+				stroke-dashoffset: 270;
+	    		animation: svgTrim .6s ease 3.1s forwards;
+			}
+		}
+	}
+}
+
+// Nav buttom
+.nav__btn {
+	svg {
+		width: 110px;
+		height: 110px;
+		path {
+			fill: none;
+			stroke: #FFF;
+			stroke-width: 4px;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			&#p1 {
+				stroke-dasharray: 315;
+				stroke-dashoffset: 315;
+			}
+			&#p2 {
+				stroke-dasharray: 100;
+				stroke-dashoffset: 100;
+			}
+			&#p3 {
+				stroke-dasharray: 380;
+				stroke-dashoffset: 380;
+			}
+			&#p4 {
+				stroke-dasharray: 390;
+				stroke-dashoffset: 390;
+			}
+			&#p5 {
+				stroke-dasharray: 310;
+				stroke-dashoffset: 310;
+			}
+			&#p6 {
+				stroke-dasharray: 120;
+				stroke-dashoffset: 120;
+			}
+			&#p7 {
+				stroke-dasharray: 365;
+				stroke-dashoffset: 365;
+			}
+			&#p8 {
+				stroke-dasharray: 92;
+				stroke-dashoffset: 92;
+			}
+		}
+	}
+}

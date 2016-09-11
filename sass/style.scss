@@ -1,0 +1,215 @@
+@import 'compass/reset';
+@import 'compass/css3';
+// @import 'https://fonts.googleapis.com/css?family=Baloo+Tamma';
+
+$orange: #D9753E;
+$green:  #98BF79;
+$blue:   #6699CC;
+// Common
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+body {
+	font-family: 'Baloo Tamma', cursive;
+	font-weight: 400;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+	&:hover, &:focus {
+		outline: none;
+	}
+}
+button {
+	background: transparent;
+	border: 0;
+	font-family: 'Baloo Tamma', cursive;
+	font-weight: 400;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+}
+
+// Module
+@import '_module';
+
+// SVG
+@import '_svg';
+
+// Heading
+.heading {
+	z-index: 1;
+	.heading__myname {
+		margin-bottom: 24px;
+		.heading__myname__ball {
+			top: -8px;
+			left: 12px;
+			span {
+				border-color: #FFF;
+				color: #FFF;
+			}
+		}
+	}
+	.heading__welcome {
+		visibility: hidden;
+		opacity: 0;
+		position: relative;
+		top: 12px;
+		color: #FFF;
+		font-size: 20px;
+		text-align: center;
+		@include transition(all 1s ease);
+	}
+	.heading__nav {
+		height: 0;
+		overflow: hidden;
+		@include transition(all 1s ease);
+	}
+	.heading__progress {
+		@include transition(all 1s ease);
+	}
+	.heading__bg {
+		position: absolute;
+		top:0; left:0;
+		width:100%; height:100%;
+		background: #DDD;
+		z-index: -1;
+		@include transition(all 1s ease);
+	}
+}
+
+// After Opening
+// .heading {
+body.load-done .heading.finish {
+	.heading__welcome {
+		visibility: visible;
+		opacity: 1;
+		top: 0;
+	}
+	.heading__nav {
+		height: 200px;
+	}
+	.heading__bg {
+		visibility: hidden;
+		opacity:0;
+		// border-radius: 50%;
+		// width:20px; height:20px;
+	}
+	.heading__nav {
+		svg path {
+			animation: svgTrim 2s ease 1s forwards;
+			&#p8 {
+				animation: svgTrimP8 2s ease 1s forwards;
+			}
+		}
+	}
+	.heading__progress {
+		visibility: hidden;
+		opacity:0;
+	}
+}
+
+// Wrap
+.wrapper {
+	position: absolute;
+	top:0; left:0;
+	width:100%; height:100%;
+	display: -webkit-flex;
+	display:         flex;
+	-webkit-align-items: center;
+	    	align-items: center;
+	-webkit-justify-content: center;
+	    	justify-content: center;
+}
+
+// Parallax
+.parallax {
+	.parallax__item {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		&.green {
+			background-image: url('../img/parallax/1-bg.jpg');
+			.green--l1 {
+			}
+			.green--l2 {
+			}
+			.green__item {
+				display: block;
+				position: absolute;
+				height: auto;
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+	}
+}
+
+// Main
+.main {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: url('../img/common/bg.jpg');
+	overflow: hidden;
+	z-index: 2;
+	@include box-shadow(0px 0px 12px hsla(0,0%,0%,.5));
+	@include transform(rotate(90deg));
+	@include transform-origin(0%, 0%);
+	@include transition(all .5s ease);
+	&.open {
+		@include transform(rotate(0deg));
+	}
+	.main__back {
+		position: absolute;
+		right: 12px;
+		top: 12px;
+		svg {
+			width: 60px;
+			height: 60px;
+			polyline {
+				fill: none;
+				stroke: hsl(0,0%,40%);
+				stroke-width: 9px;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+			}
+		}
+		&:hover {
+			polyline {
+				stroke: $orange;
+			}
+		}
+	}
+	.main__subnav {
+		// position: absolute;
+		// top: 0px;
+		// left: 0px;
+		// @include transition(all .3s ease);
+	}
+	.main__section {
+		position: absolute;
+		visibility: hidden;
+		opacity: 0;
+		@include transition(opacity .3s ease);
+		z-index: -1;
+		&.active {
+			position: relative;
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+
+// Partial
+@import '_partial';
