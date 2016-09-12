@@ -4,18 +4,19 @@
 	<meta charset="UTF-8">
 	<title>Glenn</title>
 	<script src="js/jquery-3.1.0.min.js"></script>
-	<!-- <script src="js/pace.js"></script> -->
 	<link rel="stylesheet" href="stylesheets/style.css">
-	<!-- <link rel="stylesheet" href="stylesheets/pace.css"> -->
 </head>
-<body>
+<body class="loaded">
 	<div class="wrapper">
 		<!-- Modal -->
-		<div id="aboutMe" class="modal">
-			<div class="modal__content">
+		<div class="modal">
+			<div id="aboutMe" class="modal__content">
 			 	<div class="modal__content--head"></div>
 			 	<div class="modal__content--body">text</div>
 			 	<div class="modal__content--foot"></div>
+			</div>
+			<div id="pictureView" class="modal__content">
+				
 			</div>
 		</div>
 
@@ -65,9 +66,51 @@
 					<div class="illus__content">
 						<div class="row">
 							<div class="col-tight">
-								<div class="illus__content--item item">
-									<a href="" class="item__img">
-										<img src="http://placehold.it/200x200" alt="">
+								<div class="illus__content--item item" style="overflow: scroll; width: 400px">
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="1.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="2.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="3.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="4.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="5.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="6.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="7.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="8.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="9.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="10.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="11.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="12.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="13.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="14.jpg" alt="">
+									</a>
+									<a href="#picture" class="item__img">
+										<img class="lazyload" data-lazy="15.jpg" alt="">
 									</a>
 									<div class="item__name">
 										<p>Lorem ipsum</p>
@@ -113,7 +156,7 @@
 		</div>
 
 		<!-- Heading -->
-		<div id="heading" class="heading">
+		<div id="heading" class="heading finish">
 			<div class="heading__myname myname">
 				<svg id="title" viewbox="0, 0, 500, 170">
 					<clippath id="glenn">
@@ -284,7 +327,5 @@
 		</div>
 	</div>
 	<script src="js/myscript.js"></script>
-	<script>
-	</script>
 </body>
 </html>

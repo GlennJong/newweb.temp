@@ -27,7 +27,7 @@ function Progress (elem) {
         }
     }
 }
-Progress('img')
+Progress('img[src]')
 
 // Modal Box
 function ModalBox() {
@@ -51,6 +51,23 @@ function ModalBox() {
     })
 }
 
+function lazyload(elem) {
+
+    var lazyArea = elem,
+        lazyItem = lazyArea.find('img[data-lazy]')
+
+    function loadCheck() {
+        if(this.complete) {
+            this.setAttribute('class', 'lazyloaded')
+            this.removeAttribute('data-lazy')
+        }
+    }
+
+    lazyItem.each(function() {
+        var lazySrc = this.getAttribute('data-lazy')
+        this.setAttribute('src', lazySrc)
+    }).on('load', loadCheck)
+}
 
 $(document).ready(function() {
 
@@ -68,6 +85,8 @@ $(document).ready(function() {
 		$('.main__section, .main__subnav__button').removeClass('active')
         $targetMain.addClass('active')
 		$targetSubnav.addClass('active')
+
+        lazyload($targetMain)
 	})
 	$('#backControl').on('click', function() {
 		$('.main').removeClass('open')
