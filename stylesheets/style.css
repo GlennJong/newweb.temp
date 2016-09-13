@@ -100,20 +100,39 @@ button:focus {
 }
 
 /* line 2, ../sass/_module.scss */
+img.lazyload {
+  position: relative;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 7, ../sass/_module.scss */
+img.lazyloaded {
+  opacity: 1;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 12, ../sass/_module.scss */
 .row {
   margin-right: -24px;
   margin-left: -24px;
 }
-/* line 5, ../sass/_module.scss */
+/* line 15, ../sass/_module.scss */
 .row:before, .row:after {
   content: "";
   display: table;
 }
-/* line 9, ../sass/_module.scss */
+/* line 19, ../sass/_module.scss */
 .row:after {
   clear: both;
 }
-/* line 12, ../sass/_module.scss */
+/* line 22, ../sass/_module.scss */
 .row div[class^="col"] {
   float: left;
   padding-right: 24px;
@@ -122,21 +141,21 @@ button:focus {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 18, ../sass/_module.scss */
+/* line 28, ../sass/_module.scss */
 .row .col-full {
   width: 100%;
 }
-/* line 19, ../sass/_module.scss */
+/* line 29, ../sass/_module.scss */
 .row .col-slack {
   width: 33.33%;
 }
-/* line 20, ../sass/_module.scss */
+/* line 30, ../sass/_module.scss */
 .row .col-tight {
   width: 20%;
 }
 
 @keyframes ballJump {
-  /* line 25, ../sass/_module.scss */
+  /* line 35, ../sass/_module.scss */
   0% {
     -webkit-transform: scale(1, 0.75);
     -moz-transform: scale(1, 0.75);
@@ -145,7 +164,7 @@ button:focus {
     transform: scale(1, 0.75);
   }
 
-  /* line 26, ../sass/_module.scss */
+  /* line 36, ../sass/_module.scss */
   15% {
     -webkit-transform: scale(0.75, 1.1);
     -moz-transform: scale(0.75, 1.1);
@@ -154,22 +173,22 @@ button:focus {
     transform: scale(0.75, 1.1);
   }
 
-  /* line 27, ../sass/_module.scss */
+  /* line 37, ../sass/_module.scss */
   30% {
     bottom: 12px;
   }
 
-  /* line 28, ../sass/_module.scss */
+  /* line 38, ../sass/_module.scss */
   50% {
     bottom: 15px;
   }
 
-  /* line 29, ../sass/_module.scss */
+  /* line 39, ../sass/_module.scss */
   70% {
     bottom: 12px;
   }
 
-  /* line 30, ../sass/_module.scss */
+  /* line 40, ../sass/_module.scss */
   90% {
     bottom: 0;
     -webkit-transform: scale(1, 1);
@@ -179,7 +198,7 @@ button:focus {
     transform: scale(1, 1);
   }
 
-  /* line 31, ../sass/_module.scss */
+  /* line 41, ../sass/_module.scss */
   100% {
     -webkit-transform: scale(1, 0.6);
     -moz-transform: scale(1, 0.6);
@@ -189,7 +208,7 @@ button:focus {
   }
 }
 
-/* line 33, ../sass/_module.scss */
+/* line 43, ../sass/_module.scss */
 .ball {
   display: inline-block;
   position: relative;
@@ -197,7 +216,7 @@ button:focus {
   width: 24px;
   height: 36px;
 }
-/* line 39, ../sass/_module.scss */
+/* line 49, ../sass/_module.scss */
 .ball span {
   display: block;
   position: absolute;
@@ -212,7 +231,7 @@ button:focus {
   -o-transform-origin: 50% 100%;
   transform-origin: 50% 100%;
 }
-/* line 47, ../sass/_module.scss */
+/* line 57, ../sass/_module.scss */
 .ball span:before {
   content: "i";
   position: absolute;
@@ -223,12 +242,90 @@ button:focus {
   height: 100%;
   text-align: center;
 }
-/* line 56, ../sass/_module.scss */
-.ball:hover span {
+/* line 66, ../sass/_module.scss */
+.ball.active span, .ball:hover span {
   animation: ballJump 1s linear infinite;
 }
 
-/* line 62, ../sass/_module.scss */
+/* line 71, ../sass/_module.scss */
+.bubble {
+  position: relative;
+  text-align: center;
+}
+/* line 76, ../sass/_module.scss */
+.bubble:after {
+  margin-top: -2px;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #FFF;
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+}
+/* line 89, ../sass/_module.scss */
+.bubble p {
+  padding: 12px;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  -webkit-transition: color 0.3s ease;
+  -webkit-transition-delay: 0.3s;
+  -moz-transition: color 0.3s ease 0.3s;
+  -o-transition: color 0.3s ease 0.3s;
+  transition: color 0.3s ease 0.3s;
+}
+/* line 97, ../sass/_module.scss */
+.bubble p:after {
+  background: #FFF;
+  border-radius: 12px;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transform: translate(-50%, -100%);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+/* line 112, ../sass/_module.scss */
+.bubble.hide:after {
+  visibility: hidden;
+  border-top: 0px solid #FFF;
+  -webkit-transition: all 0.3s ease;
+  -webkit-transition-delay: 0.15s;
+  -moz-transition: all 0.3s ease 0.15s;
+  -o-transition: all 0.3s ease 0.15s;
+  transition: all 0.3s ease 0.15s;
+}
+/* line 117, ../sass/_module.scss */
+.bubble.hide p {
+  visibility: hidden;
+  color: transparent;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+/* line 121, ../sass/_module.scss */
+.bubble.hide p:after {
+  visibility: hidden;
+  width: 4px;
+  height: 4px;
+  border-radius: 20px;
+  -webkit-transition: all 0.3s ease;
+  -webkit-transition-delay: 0.15s;
+  -moz-transition: all 0.3s ease 0.15s;
+  -o-transition: all 0.3s ease 0.15s;
+  transition: all 0.3s ease 0.15s;
+}
+
+/* line 132, ../sass/_module.scss */
 .progress {
   position: relative;
   margin: 0 auto;
@@ -237,7 +334,7 @@ button:focus {
   height: 8px;
   overflow: hidden;
 }
-/* line 69, ../sass/_module.scss */
+/* line 139, ../sass/_module.scss */
 .progress .progress-inset {
   position: absolute;
   top: 0;
@@ -246,7 +343,7 @@ button:focus {
   background: #FFF;
 }
 
-/* line 78, ../sass/_module.scss */
+/* line 148, ../sass/_module.scss */
 .modal {
   visibility: hidden;
   opacity: 0;
@@ -263,9 +360,19 @@ button:focus {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-/* line 90, ../sass/_module.scss */
+/* line 160, ../sass/_module.scss */
+.modal .modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  background: #FFF;
+}
+/* line 168, ../sass/_module.scss */
 .modal .modal__content {
-  position: relative;
+  visibility: hidden;
+  position: absolute;
   margin: 5% auto;
   padding: 36px;
   max-width: 750px;
@@ -280,60 +387,74 @@ button:focus {
   -o-transition: all 0.3s cubic-bezier(0.46, -0.2, 0.61, 1.28);
   transition: all 0.3s cubic-bezier(0.46, -0.2, 0.61, 1.28);
 }
-/* line 98, ../sass/_module.scss */
-.modal .modal__content .modal__content--close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+/* line 180, ../sass/_module.scss */
+.modal .modal__content .modal__content--body {
+  width: 100%;
 }
-/* line 104, ../sass/_module.scss */
+/* line 186, ../sass/_module.scss */
+.modal .modal__content.active {
+  visibility: visible;
+  position: relative;
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+/* line 193, ../sass/_module.scss */
 .modal.active {
   visibility: visible;
   opacity: 1;
 }
-/* line 107, ../sass/_module.scss */
-.modal.active .modal__content {
-  @incldue transform(scale(1,1));
-}
 
-/* line 114, ../sass/_module.scss */
+/* line 200, ../sass/_module.scss */
 .section {
   padding: 60px;
 }
-/* line 116, ../sass/_module.scss */
+/* line 202, ../sass/_module.scss */
 .section .section__title {
   text-align: center;
 }
-/* line 118, ../sass/_module.scss */
+/* line 204, ../sass/_module.scss */
 .section .section__title h1 {
   font-size: 60px;
   color: #98bf79;
 }
-/* line 122, ../sass/_module.scss */
+/* line 208, ../sass/_module.scss */
 .section .section__title hr {
   border: 0;
   width: 120px;
   height: 5px;
   background: #98bf79;
 }
-/* line 129, ../sass/_module.scss */
+/* line 215, ../sass/_module.scss */
 .section .section__article {
   margin: auto;
   max-width: 1280px;
 }
-/* line 132, ../sass/_module.scss */
+/* line 218, ../sass/_module.scss */
 .section .section__article p {
   line-height: 1.5em;
   color: #595959;
 }
 
-/* line 141, ../sass/_module.scss */
+/* line 226, ../sass/_module.scss */
+.item {
+  text-align: center;
+}
+/* line 228, ../sass/_module.scss */
 .item .item__img {
   display: block;
   position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  z-index: 1;
 }
-/* line 144, ../sass/_module.scss */
+/* line 235, ../sass/_module.scss */
 .item .item__img:before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -341,28 +462,55 @@ button:focus {
   height: 100%;
   border: 3px solid transparent;
   border-image: url("../svg/img-cover.svg") 12 round;
+  z-index: -1;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 153, ../sass/_module.scss */
+/* line 246, ../sass/_module.scss */
 .item .item__img img {
   display: block;
-  width: 100%;
-  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 200%;
+  max-height: 200%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-/* line 159, ../sass/_module.scss */
+/* line 256, ../sass/_module.scss */
 .item .item__name {
+  display: inline-block;
+  vertical-align: middle;
   text-align: center;
 }
-/* line 161, ../sass/_module.scss */
-.item .item__name p {
+/* line 261, ../sass/_module.scss */
+.item .item__info {
+  position: relative;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
-/* line 165, ../sass/_module.scss */
-.item .item__name .item__name__ball {
-  vertical-align: bottom;
+/* line 265, ../sass/_module.scss */
+.item .item__info .bubble {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 200px;
+  margin-left: -100px;
+  margin-bottom: 24px;
+  z-index: 2;
+  -webkit-filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.25));
+  -moz-filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.25));
+}
+/* line 274, ../sass/_module.scss */
+.item .item__info .ball {
+  width: 26px;
+  height: 26px;
+  z-index: 2;
 }
 
 @keyframes svgTrim {
@@ -643,7 +791,7 @@ body.load-done .heading.finish .heading__progress {
   -o-transition: all 1s ease;
   transition: all 1s ease;
 }
-/* line 171, ../sass/style.scss */
+/* line 170, ../sass/style.scss */
 .main.open {
   top: 0;
   right: 0;
@@ -653,18 +801,18 @@ body.load-done .heading.finish .heading__progress {
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
 }
-/* line 176, ../sass/style.scss */
+/* line 175, ../sass/style.scss */
 .main .main__back {
   position: absolute;
   right: 12px;
   top: 12px;
 }
-/* line 180, ../sass/style.scss */
+/* line 179, ../sass/style.scss */
 .main .main__back svg {
   width: 60px;
   height: 60px;
 }
-/* line 183, ../sass/style.scss */
+/* line 182, ../sass/style.scss */
 .main .main__back svg polyline {
   fill: none;
   stroke: #666666;
@@ -672,11 +820,11 @@ body.load-done .heading.finish .heading__progress {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-/* line 192, ../sass/style.scss */
+/* line 191, ../sass/style.scss */
 .main .main__back:hover polyline {
   stroke: #d9753e;
 }
-/* line 203, ../sass/style.scss */
+/* line 202, ../sass/style.scss */
 .main .main__section {
   position: absolute;
   visibility: hidden;
@@ -687,7 +835,7 @@ body.load-done .heading.finish .heading__progress {
   transition: opacity 0.3s ease;
   z-index: -1;
 }
-/* line 209, ../sass/style.scss */
+/* line 208, ../sass/style.scss */
 .main .main__section.active {
   position: relative;
   visibility: visible;

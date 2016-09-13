@@ -31,13 +31,17 @@ Progress('img[src]')
 
 // Modal Box
 function ModalBox() {
-    var $modalBox = $('.modal')
-    var $modalClose = $('.modal__close')
+    var $modalBox     = $('.modal')
+    var $modalContent = $('.modal__content')
+    var $modalClose   = $('.modal__close')
     var $modalControl = $('.modalControl')
 
     $modalControl.on('click',function() {
         var modalTarget = $(this).attr('href'),
-        $modalTarget = $(modalTarget)
+            $modalTarget = $(modalTarget)
+
+        $modalContent.removeClass('active')
+        $modalBox.addClass('active')
         $modalTarget.addClass('active')
     })
     $modalClose.on('click',function() {
@@ -51,6 +55,7 @@ function ModalBox() {
     })
 }
 
+// Lazyload
 function lazyload(elem) {
 
     var lazyArea = elem,
@@ -86,6 +91,7 @@ $(document).ready(function() {
         $targetMain.addClass('active')
 		$targetSubnav.addClass('active')
 
+        // lazyload
         lazyload($targetMain)
 	})
 	$('#backControl').on('click', function() {
@@ -102,6 +108,15 @@ $(document).ready(function() {
         $('.sectionControl, #subnav, .main__section').removeClass('active')
         $target.addClass('active')
         $(this).addClass('active')
+
+        // lazyload
+        lazyload($target)
+    })
+
+    // Bubble Control
+    $('.bubbleControl').on('click', function() {
+        $(this).toggleClass('active')
+        $(this).siblings('.bubble').toggleClass('hide')
     })
 
 })
