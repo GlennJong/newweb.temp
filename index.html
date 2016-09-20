@@ -6,8 +6,18 @@
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<link rel="stylesheet" href="stylesheets/style.css">
 </head>
-<body class="loaded">
+<body>
 	<div class="wrapper">
+
+		<div class="pictureView">
+			<buttom class="pictureView__close"></buttom>
+			<img class="pictureView__img" src="1.jpg" alt="">
+			<div class="pictureView__control">
+				<button class="prev"></button>
+				<button class="next"></button>
+			</div>
+		</div>
+
 		<!-- Modal -->
 		<div class="modal">
 			<buttom class="modal__close"></buttom>
@@ -60,16 +70,20 @@
 					<h1>illustration</h1>
 					<hr>
 				</div>
-				<div class="section__intro">
+				<div class="section__description">
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore nam accusamus porro minus, atque hic. Quo itaque, repellendus in, officiis ea optio repellat culpa ipsa blanditiis ducimus. Dicta, quisquam.</p>
 				</div>
-				<div class="section__content">
-					<div class="illus__content">
-						<div class="row">
-							<div class="col-tight">
+				<div class="section__intro intro">
+					<div class="introControl">
+						<button>click Me</button>
+					</div>
+					<div class="section__content introContent">
+<!-- 						<div class="illus__content">
+							<div class="row row--tight">
 								<div class="illus__content--item item">
-									<a href="#picture" class="item__img modalControl">
+									<a href="#" class="item__img pictureControl">
 										<img class="lazyload" data-lazy="1.jpg">
+										<i class="img-mask"></i>
 									</a>
 									<div class="item__name">
 										<p>Lorem ipsum</p>
@@ -84,7 +98,28 @@
 									</div>
 								</div>
 							</div>
+						</div> -->
+
+						<div class="illus__content">
+							<div class="row row--tight">
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="1.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Lorem ipsum dolor sit amet.</p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+							</div>
 						</div>
+
+
 					</div>
 				</div>
 			</div>
@@ -120,7 +155,7 @@
 		</div>
 
 		<!-- Heading -->
-		<div id="heading" class="heading finish">
+		<div id="heading" class="heading">
 			<div class="heading__myname myname">
 				<svg id="title" viewbox="0, 0, 500, 170">
 					<clippath id="glenn">
@@ -242,10 +277,12 @@
 		<!-- Parallax -->
 		<div class="parallax">
 			<div class="parallax__item green">
-				<i class="green__item" style="top:-5%; left:60%; width:400px;">
-					<img src="img/parallax/1-i3.png" alt="">
-				</i>
-				<div class="green--l1">
+				<div data-parallax="20" class="green--l1 parallax--layer parallax--base">
+					<i class="green__item" style="top:-5%; left:60%; width:400px;">
+						<img src="img/parallax/1-i3.png" alt="">
+					</i>
+				</div>
+				<div data-parallax="18" class="green--l2 parallax--layer">
 					<i class="green__item" style="top:0%; left:30%; width:200px">
 						<img src="img/parallax/1-s1.png" alt="">
 					</i>
@@ -262,7 +299,7 @@
 						<img src="img/parallax/1-s3.png" alt="">
 					</i>
 				</div>
-				<div class="green--l2">
+				<div data-parallax="15" class="green--l3 parallax--layer">
 					<i class="green__item" style="top:-10%; left:30%; width:250px">
 						<img src="img/parallax/1-c1.png" alt="">
 					</i>
@@ -279,11 +316,11 @@
 						<img src="img/parallax/1-c3.png" alt="">
 					</i>
 				</div>
-				<div class="green--l3">
-					<i class="green__item" style="top:-10%; left:5%">
+				<div data-parallax="10" class="green--l4 parallax--layer">
+					<i class="green__item woof1">
 						<img src="img/parallax/1-i1.png" alt="">
 					</i>
-					<i class="green__item" style="top:50%; left:0%">
+					<i class="green__item woof2">
 						<img src="img/parallax/1-i2.png" alt="">
 					</i>
 				</div>

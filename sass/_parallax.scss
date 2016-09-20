@@ -1,0 +1,69 @@
+@keyframes woof1 {
+	from {
+		left: 40%;
+		top: 100%;
+	}
+	to {
+		left: 5%;
+		top: -25%;
+	}
+}
+@keyframes woof2 {
+	from {
+		left: -10%;
+		top: 40%;
+	}
+	to {
+		left: 100%;
+		top: 0%;
+	}
+}
+
+// Parallax
+.parallax {
+	.parallax__item {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		.parallax--base {
+			top: 50%;
+			left: 50%;
+			width: 120%;
+			height: 120%;
+		}
+		&.green {
+			.green--l1 {
+				background-image: url('../img/parallax/1-bg.jpg');
+			}
+			.green--l2 {
+			}
+			.green--l3 {
+			}
+			.green__item {
+				display: block;
+				position: absolute;
+				height: auto;
+				img {
+					width: 100%;
+					height: auto;
+				}
+				&.woof1 {
+					animation: woof1 30s linear infinite;
+					@include transform(rotate(-25deg));
+				}
+				&.woof2 {
+					animation: woof2 40s linear infinite;
+					@include transform(rotate(60deg));
+				}
+			}
+		}
+	}
+	.parallax--layer {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}

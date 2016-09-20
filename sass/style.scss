@@ -126,32 +126,7 @@ body.load-done .heading.finish {
 }
 
 // Parallax
-.parallax {
-	.parallax__item {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 0;
-		&.green {
-			background-image: url('../img/parallax/1-bg.jpg');
-			.green--l1 {
-			}
-			.green--l2 {
-			}
-			.green__item {
-				display: block;
-				position: absolute;
-				height: auto;
-				img {
-					width: 100%;
-					height: auto;
-				}
-			}
-		}
-	}
-}
+@import '_parallax';
 
 // Main
 .main {

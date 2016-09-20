@@ -5,10 +5,10 @@ setTimeout(function(){
 
 // Progress
 function Progress (elem) {
-    var $elem = $(elem)
+    $elem = $(elem)
     var total  = $elem.length;
-    var finish = 0
-    $elem.on('load', loaded)
+    var finish = 0;
+    $elem.one('load', loaded)
             .each(chechCompleted)
 
     function chechCompleted() {
@@ -20,39 +20,154 @@ function Progress (elem) {
         finish += 1
         var percent = finish / total * 100
         $('.progress .progress-inset').width(percent + '%')
-        console.log(percent)
+        // console.log(percent)
         if (percent >= 100) {
             $('body').addClass('load-done')
-            console.log('work!')
+            // console.log('work!')
         }
     }
 }
 Progress('img[src]')
 
+// Parallax
+function Parallax() {
+    centerX = $(window).width()  / 2;
+    centerY = $(window).height() / 2;
+    // Temp
+    mouseX = centerX;
+    mouseY = centerY;
+
+    newX   = 0;
+    newY   = 0;
+    pointX = 0;
+    pointY = 0;
+
+    function Layer(elem, delta) {
+        this.elem = elem
+        this.delta  = delta
+    }
+
+    var layers = []
+    $('.parallax--layer').each(function() {
+        var delta = $(this).data('parallax')
+        layers.push(new Layer(this, delta))
+    })
+
+    $(window).on('mousemove' , function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function run() {
+        pointX = mouseX - centerX;
+        pointY = mouseY - centerY;
+        newX += ( pointX - newX ) * 1/6;
+        newY += ( pointY - newY ) * 1/6;
+
+        layers.forEach(function(layer) {
+            parallaxX = newX / layer.delta,
+            parallaxY = newY / layer.delta;
+            var $elem = $(layer.elem)
+            $elem.css({
+                'transform': 'translate(' + parallaxX + 'px, ' + parallaxY + 'px)' 
+            })
+        })
+        requestAnimationFrame(run);
+    }
+    run()
+}
+Parallax()
+
 // Modal Box
 function ModalBox() {
-    var $modalBox     = $('.modal')
-    var $modalContent = $('.modal__content')
-    var $modalClose   = $('.modal__close')
-    var $modalControl = $('.modalControl')
+    $modalBox     = $('.modal')
+    $modalContent = $('.modal__content')
+    $modalClose   = $('.modal__close')
+    $modalControl = $('.modalControl')
 
-    $modalControl.on('click',function() {
-        var modalTarget = $(this).attr('href'),
-            $modalTarget = $(modalTarget)
-
-        $modalContent.removeClass('active')
-        $modalBox.addClass('active')
-        $modalTarget.addClass('active')
-    })
+    // Close
     $modalClose.on('click',function() {
         $modalBox.removeClass('active')
+        $modalContent.removeClass('active')
     })
     $(window).on('click',function(e) {
         var clickTarget = $(e.target)
         if (clickTarget.is('.modal')) {
             $modalBox.removeClass('active')
+            $modalContent.removeClass('active')
         }
     })
+
+    // Modal Control
+    $modalControl.on('click',function() {
+        var modalTarget = $(this).attr('href'),
+            $modalTarget = $(modalTarget)
+
+        $modalBox.addClass('active')
+        $modalTarget.addClass('active')
+
+    })
+}
+
+// Picture View
+function PictureView() {
+    $pictureItem    = $('.item')
+    $pictureControl = $('.pictureControl')
+    $pictureView    = $('.pictureView')
+    $pictureClose   = $('.pictureView__close')
+    $picturePrev    = $('.pictureView .prev')
+    $pictureNext    = $('.pictureView .next')
+
+    // Close
+    $pictureClose.on('click',function() {
+        $pictureView.removeClass('active')
+        $pictureItem.removeClass('active')
+    })
+    $(window).on('click',function(e) {
+        var clickTarget = $(e.target)
+        if (clickTarget.is('.pictureView')) {
+            $pictureView.removeClass('active')
+            $pictureItem.removeClass('active')
+        }
+    })
+
+    $pictureControl.on('click', function() {
+        $(this).parent('.item').addClass('active')
+
+        var $pictureItem = $('.item.active')
+        var pictureSrc   = $pictureItem.find('img').attr('src')
+
+        $pictureView.addClass('active')
+        changeSrc()
+    })
+    $picturePrev.on('click', function() {
+        var $pictureItem = $('.item.active')
+        var allItem = $pictureItem.siblings('.item').length
+        if ($pictureItem.index() === 0) {
+            return
+        }
+        else {
+            $pictureItem.removeClass('active').prev().addClass('active')
+            changeSrc()
+        }
+    })
+    $pictureNext.on('click', function() {
+        var $pictureItem = $('.item.active')
+        var allItem = $pictureItem.siblings('.item').length
+        if ($pictureItem.index() === allItem) {
+            return
+        }
+        else {
+            $pictureItem.removeClass('active').next().addClass('active')
+            changeSrc()
+        }
+    })
+
+    // Change Img src
+    function changeSrc() {
+        var imgSrc = $('.item.active img').attr('src')
+        $pictureView.find('img').attr('src', imgSrc)
+    }
 }
 
 // Lazyload
@@ -79,6 +194,20 @@ $(document).ready(function() {
     // ModalBox
     ModalBox()
 
+    // PictureView
+    PictureView()
+
+    // Parallax
+    $('.parallax--base').each(function(){
+        var baseWidth = $(this).outerWidth(),
+            baseHeight= $(this).outerHeight()
+
+        $(this).css({
+            'margin-top' : -1 * baseHeight / 2 + 'px',
+            'margin-left': -1 * baseWidth  / 2 + 'px'
+        })
+    })
+
     // Nav Control
 	$('.nav__btn').on('click', function() {
 		var target        = $(this).data('target'),
@@ -96,6 +225,7 @@ $(document).ready(function() {
 	})
 	$('#backControl').on('click', function() {
 		$('.main').removeClass('open')
+        $('.intro').removeClass('active')
 	})
 
     // SubNav Control
@@ -108,6 +238,7 @@ $(document).ready(function() {
         $('.sectionControl, #subnav, .main__section').removeClass('active')
         $target.addClass('active')
         $(this).addClass('active')
+        $('.intro').removeClass('active')
 
         // lazyload
         lazyload($target)
@@ -117,6 +248,12 @@ $(document).ready(function() {
     $('.bubbleControl').on('click', function() {
         $(this).toggleClass('active')
         $(this).siblings('.bubble').toggleClass('hide')
+    })
+
+    // intro Control
+    $('.introControl button').on('click', function() {
+        var $intro = $(this).parents('.intro')
+        $intro.addClass('active')
     })
 
 })

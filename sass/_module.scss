@@ -1,13 +1,46 @@
 // Lazyload
+@keyframes lazyloadAni {
+	50% {
+		@include transform(rotate(90deg));
+		border-radius: 50%;
+	}
+	100% {
+		@include transform(rotate(90deg));
+	}
+}
 img.lazyload {
 	position: relative;
 	opacity: 0;
 	@include transition(all .3s ease);
+	& + i.img-mask {
+		background: #DDD;
+		&:before, &:after {
+			content: "";
+			position: absolute;
+		}
+		&:before {
+			top: 50%;
+			left: 50%;
+			margin-top: -20px; margin-left: -10px;
+			width: 20px; height: 20px;
+			background: #999;
+			animation: lazyloadAni 1s infinite;
+		}
+		&:after {
+			content: "loading";
+			top: 55%;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			color: #999;
+		}
+	}
 }
 img.lazyloaded {
 	opacity: 1;
 	@include transition(all .3s ease);
 }
+
 // Mini Grid
 .row {
     margin-right: -24px;
@@ -19,15 +52,15 @@ img.lazyloaded {
     &:after {
     	clear: both;
     }
-	div[class^="col"] {
+	& > div {
 		float: left;
 	    padding-right: 24px;
 	    padding-left: 24px;
 	    @include box-sizing(border-box);
 	}
-	.col-full  { width:100%}
-	.col-slack { width:33.33%}
-	.col-tight { width:20%}
+    &.row--full > div  { width: 100%}
+    &.row--slack > div { width: 33.33%}
+    &.row--tight > div { width: 20%}
 }
 
 // Jumping Ball
@@ -67,6 +100,20 @@ img.lazyloaded {
 		animation: ballJump 1s linear infinite;
 	}
 }
+
+// ScrollBar
+
+::-webkit-scrollbar {
+	position: relative;
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: hsla(0,0%,0%,.1);
+}
+::-webkit-scrollbar-thumb {
+    background: hsla(0,0%,0%,.15);
+}
+
 // Bubble
 .bubble {
 	// Temp
@@ -109,6 +156,8 @@ img.lazyloaded {
 		}
 	}
 	&.hide {
+		visibility: hidden;
+		position: absolute;
 		&:after {
 			visibility: hidden;
 			border-top: 0px solid #FFF;
@@ -159,15 +208,34 @@ img.lazyloaded {
 	@include transition(all .3s ease);
 	.modal__close {
 		position: absolute;
-		top: 12px;
-		right: 12px;
-		width: 20px;
-		height: 20px;
-		background: #FFF;
+		top: 24px;
+		right: 24px;
+		width: 50px;
+		height: 50px;
+		cursor: pointer;
+		&:hover {
+			&:before, &:after {
+				background: $green;
+			}
+		}
+		&:before, &:after {
+			position: absolute;
+			top: 24px;
+			left: 0;
+			content: "";
+			border-radius: 6px;
+			width: 48px;
+			height: 6px;
+			background: #FFF;
+			@include transform(rotate(45deg));
+		}
+		&:after {
+			@include transform(rotate(-45deg));
+		}
 	}
 	.modal__content {
 		visibility: hidden;
-		position: absolute;
+		position: relative;
 		margin: 5% auto;
 		padding: 36px;
 		max-width: 750px;
@@ -185,9 +253,94 @@ img.lazyloaded {
 		}
 		&.active {
 			visibility: visible;
-			position: relative;
 			opacity: 1;
 			@include transform(scale(1,1));
+		}
+	}
+	&.active {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+// Picture View
+.pictureView {
+	// flexBox
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+
+	visibility: hidden;
+	opacity: 0;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: hsla(0,0%,0%,.75);
+	overflow: auto;
+	z-index: 99;
+	@include transition(all .3s ease);
+	.pictureView__close {
+		position: absolute;
+		top: 24px;
+		right: 24px;
+		width: 50px;
+		height: 50px;
+		cursor: pointer;
+		&:hover {
+			&:before, &:after {
+				background: $green;
+			}
+		}
+		&:before, &:after {
+			position: absolute;
+			top: 24px;
+			left: 0;
+			content: "";
+			border-radius: 6px;
+			width: 48px;
+			height: 6px;
+			background: #FFF;
+			@include transform(rotate(45deg));
+		}
+		&:after {
+			@include transform(rotate(-45deg));
+		}
+	}
+	.pictureView__img {
+		position: relative;
+	    width: auto;
+	    height: auto;
+	    max-width: 90%;
+	    max-height: 90%;
+	    box-shadow: 3px 3px 8px 2px hsla(0,0%,0%,.2);
+		// @include transform(scale(.1,.1));
+		// @include transition(all .3s cubic-bezier(0.46, -0.2, 0.61, 1.28));
+	}
+	.pictureView__control {
+		.prev, .next {
+			opacity: .5;
+			position: absolute;
+			top: 45%;
+			width: 60px;
+			height: 60px;
+			background-image: url('../svg/arrow.svg');
+			background-size: cover;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		.prev {
+			left: 36px;
+			@include transform(rotate(-90deg));
+		}
+		.next {
+			right: 36px;
+			@include transform(rotate(90deg));
 		}
 	}
 	&.active {
@@ -220,10 +373,39 @@ img.lazyloaded {
 			color: hsl(0,0%,35%);
 		}
 	}
+	.section__content {
+		margin-top: 24px;
+		height: 500px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+}
+
+// intro
+.intro {
+	.introControl {}
+	.introContent {
+		visibility: hidden;
+		opacity: 0;
+		position: relative;
+		left: -24px;
+		@include transition(all .3s ease);
+	}
+	&.active {
+		.introControl {
+			display: none;
+		}
+		.introContent {
+			visibility: visible;
+			opacity: 1;
+			left: 0;
+		}
+	}
 }
 
 // Item
 .item {
+	position: relative;
 	text-align: center;
 	.item__img {
 		display: block;
@@ -232,36 +414,33 @@ img.lazyloaded {
 		height: 200px;
 		overflow: hidden;
 		z-index: 1;
-  		&:before {
-  			content: "";
+		img {
+			display: block;
+			position: absolute;
+			top: 50%; left: 50%;
+			max-width: 300%;
+			max-height: 300%;
+			@include transform(translate(-50%, -50%));
+		}
+		i.img-mask {
+			display: block;
   			position: absolute;
   			top: 0; left: 0;
   			width: 100%; height: 100%;
 			border: 3px solid transparent;
 	  		border-image: url('../svg/img-cover.svg') 12 round;
-	  		z-index: -1;
+	  		z-index: 1;
 	  		@include box-sizing(border-box);
-	  		// @include transform(translate3d(0px, 0px ,0px));
-  		}
-		img {
-			display: block;
-			position: absolute;
-			top: 50%; left: 50%;
-			max-width: 200%;
-			max-height: 200%;
-			@include transform(translate(-50%, -50%));
-
 		}
 	}
-	.item__name {
-		display: inline-block;
-		vertical-align: middle;
-		text-align: center;
-	}
+	// .item__name {
+	// 	display: inline-block;
+	// 	vertical-align: middle;
+	// 	text-align: center;
+	// }
 	.item__info {
+		margin-top: 12px;
 		position: relative;
-		display: inline-block;
-		vertical-align: middle;
 		.bubble {
 			position: absolute;
 			left: 50%; bottom: 100%;
@@ -275,6 +454,7 @@ img.lazyloaded {
 			width: 26px;
 			height: 26px;
 			z-index: 2;
+			@include transition(all .3s ease);
 		}
 	}
 }
