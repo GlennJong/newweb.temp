@@ -6,7 +6,7 @@
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<link rel="stylesheet" href="stylesheets/style.css">
 </head>
-<body>
+<body class="loaded">
 	<div class="wrapper">
 
 		<div class="pictureView">
@@ -21,11 +21,28 @@
 		<!-- Modal -->
 		<div class="modal">
 			<buttom class="modal__close"></buttom>
+
 			<div id="aboutMe" class="modal__content">
-			 	<div class="modal__content--head"></div>
-			 	<div class="modal__content--body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod architecto odit recusandae corporis tempore necessitatibus, iure unde iusto, voluptatibus nobis alias, placeat facere voluptatum molestiae deleniti distinctio voluptates qui non.</div>
+			 	<div class="modal__content--head">
+			 		<div class="modal__content--head--tab tab">
+			 			<button data-tab="#website" class="tab__button active">About this site</button>
+			 			<button data-tab="#me" class="tab__button">About Me</button>
+			 		</div>
+			 	</div>
+			 	<div id="website" class="modal__content--body tab-content active">
+			 		<p>這是 Glenn 的個人網站，存放一些圖像設計、畫作與網頁作品。在風格上做了不同於目前流行的 Flat style，反而是做了充滿動態 SVG 與手繪感十足的視覺設計:P</p>
+			 		<p>這是第二次嘗試「全手刻」網站(還是有使用 jQuery :P)，距離上一次這麼做已經經過一年了，這個網站包含了這一年所有成果的總結。</p>
+			 		<p>再參考許許多多的範例後，嘗試自己去做簡易的 Progress, lazyload, pictureView, modalBox, parallax...等功能，對於 Javascript 程度是初出茅廬的我而言，是非常大的挑戰，在邊嘗試邊修正的過程中，對於 Javascript 也有更深一層的認識。</p>
+			 		<p>若您喜歡我的作品，歡迎與我聯繫:)</p>
+			 	</div>
+			 	<div id="me" class="modal__content--body tab-content">
+					<p>嗨，我是 Glenn，我是一名網頁前端設計師，2013 年第一次接觸了 html 與 css，透過自學與工作經驗的累積，使我越來越瞭解前端技術的魅力，有人說「網頁前端是一個大坑，要學的事物很多」，學習越多越能發掘自身能力的不足，但也因此獲得了不同的高度與見解，人生本來就是一場不斷學習的旅程，時時以謙卑的態度並維持著好奇心不斷地學習，才是一名設計師應該有的態度。</p>
+					<p>habbit： guitar, painting, jogging</p>
+					<p>skills： photoshop, illustrator, paint tool SAI, css, html, scss, javascript, jquery, svg</p>
+			 	</div>
 			 	<div class="modal__content--footer"></div>
 			</div>
+
 			<div id="pictureView" class="modal__content">
 				
 			</div>
@@ -71,26 +88,181 @@
 					<hr>
 				</div>
 				<div class="section__description">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolore nam accusamus porro minus, atque hic. Quo itaque, repellendus in, officiis ea optio repellat culpa ipsa blanditiis ducimus. Dicta, quisquam.</p>
+					<p>這裏收藏了一些 Photoshop、Paint tool SAI、illustrator 的平面作品。</p>
 				</div>
 				<div class="section__intro intro">
-					<div class="introControl">
+<!-- 					<div class="introControl">
+						<p>我熱愛畫畫，畫畫是一件很棒的事，能夠直白地表現作者的想法。<br>
+						對我來說，一開始是興趣使然的隨手塗鴉，進而開始學習更多工具，追求更高的作品完成度，觀摩更多傑出的畫作，挑戰更多的繪畫技巧，也逐漸畫出自己的風格、美感與想像力。</p>	
 						<button>click Me</button>
-					</div>
-					<div class="section__content introContent">
-<!-- 						<div class="illus__content">
+					</div> -->
+					<div class="section__content">
+
+<!-- 						<div class="draw-ani">
+							<div class="pencil"></div>
+							<div class="drawline"></div>
+						</div> -->
+
+						<div class="illus__content">
 							<div class="row row--tight">
 								<div class="illus__content--item item">
 									<a href="#" class="item__img pictureControl">
-										<img class="lazyload" data-lazy="1.jpg">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8152/29753847252_16fd8c27c2_b.jpg">
 										<i class="img-mask"></i>
 									</a>
-									<div class="item__name">
-										<p>Lorem ipsum</p>
-									</div>
 									<div class="item__info">
 										<div class="bubble hide">
-										  <p>Lorem ipsum dolor sit amet.</p>
+										  <p>Clouds. <span>by photoshop.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8172/29832351456_f2c7a982d0_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Fixed myself.<br>
+										  <span>by paint tools SAI.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8082/29832351286_c91a9f254e_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Attack!
+										  <span>by photoshop.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8397/29241027653_76c5a66c8d_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Street<br>
+										  <span>by paint tool SAI.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8097/29574033110_ed67e355c4_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Summer night<br>
+										  <span>by paint tool SAI.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8263/29753846272_e3e1d029c4_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Rainy day<br>
+										  <span>by paint tool SAI.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8114/29242610934_f1c4888305_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Fairy<br>
+										  <span>by paint tool SAI.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8212/29832350556_f1cc7844fe_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Lovely afternoon<br>
+										  <span>by paint tool SAI.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8404/29753846112_9b154de9a3_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>CAUTION SHARK!<br>
+										  <span>by photoshop.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c2.staticflickr.com/6/5484/29832350206_68c2e942a4_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Occupied the planet<br>
+										  <span>by paint tool SAI.</span></p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c2.staticflickr.com/6/5497/29753845832_91e5bc9a59_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Catronaut<br>
+										  <span>by paint tool SAI.</span></p>
 										</div>
 										<a href="#" class="ball bubbleControl">
 											<span></span>
@@ -98,18 +270,49 @@
 									</div>
 								</div>
 							</div>
-						</div> -->
-
-						<div class="illus__content">
 							<div class="row row--tight">
 								<div class="illus__content--item item">
 									<a href="#" class="item__img pictureControl">
-										<img class="lazyload" data-lazy="1.jpg">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8325/29834428066_f1dd9c2879_c.jpg">
 										<i class="img-mask"></i>
 									</a>
 									<div class="item__info">
 										<div class="bubble hide">
-										  <p>Lorem ipsum dolor sit amet.</p>
+										  <p>Sticker. <span>by illustrator.</span><br>
+										  <a href="download/sticks.ai">download</a>
+										  </p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8405/29755772832_b2bf6d2dd1_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Caution. <span>by illustrator.</span><br>
+										  <a href="download/caution.ai">download</a>
+										  </p>
+										</div>
+										<a href="#" class="ball bubbleControl">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<div class="illus__content--item item">
+									<a href="#" class="item__img pictureControl">
+										<img class="lazyload" data-lazy="https://c1.staticflickr.com/9/8121/29755773582_a2202eb026_b.jpg">
+										<i class="img-mask"></i>
+									</a>
+									<div class="item__info">
+										<div class="bubble hide">
+										  <p>Save Energy. <span>by illustrator.</span><br>
+										  <a href="download/bright.ai">download</a>
+										  </p>
 										</div>
 										<a href="#" class="ball bubbleControl">
 											<span></span>
@@ -123,6 +326,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div id="photos" class="main__section section">
 				<div class="section__title">
 					<h1>photos</h1>
@@ -155,7 +359,7 @@
 		</div>
 
 		<!-- Heading -->
-		<div id="heading" class="heading">
+		<div id="heading" class="heading finish">
 			<div class="heading__myname myname">
 				<svg id="title" viewbox="0, 0, 500, 170">
 					<clippath id="glenn">

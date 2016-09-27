@@ -62,6 +62,16 @@ img.lazyloaded {
     &.row--slack > div { width: 33.33%}
     &.row--tight > div { width: 20%}
 }
+@media (max-width: 1600px) {
+    .row {
+    	&.row--tight > div { width: 25%}
+    }
+}
+@media (max-width: 1280px) {
+	.row {
+    	&.row--tight > div { width: 33.33%}
+	}
+}
 
 // Jumping Ball
 @keyframes ballJump {
@@ -202,7 +212,7 @@ img.lazyloaded {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: hsla(0,0%,0%,.5);
+	background: hsla(0,0%,0%,.8);
 	overflow: auto;
 	z-index: 99;
 	@include transition(all .3s ease);
@@ -237,16 +247,23 @@ img.lazyloaded {
 		visibility: hidden;
 		position: relative;
 		margin: 5% auto;
-		padding: 36px;
+		border-radius: 12px;
 		max-width: 750px;
-		background: #FFF;
+		overflow: hidden;
 		@include transform(scale(.1,.1));
 		@include transition(all .3s cubic-bezier(0.46, -0.2, 0.61, 1.28));
+		p {
+			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
+			line-height: 2em;
+			font-size: 14px;
+			color: #FFF;
+		}
 		.modal__content--head {
 			
 		}
 		.modal__content--body {
-			width: 100%;
+			padding: 36px;
+			background: #FFF;
 		}
 		.modal__content--footer {
 
@@ -263,6 +280,39 @@ img.lazyloaded {
 	}
 }
 
+// Tab
+.tab {
+	&:before, &:after {
+		content: "";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+	.tab__button {
+		float: left;
+		width: 50%;
+		border-radius: 12px 12px 0px 0px;
+		padding: 12px 12px 6px;
+		font-size: 24px;
+		color: #FFF;
+		background: lighten($green, 10%);
+		&.active {
+			background: $green;
+		}
+	}
+}
+.tab-content {
+	display: none;
+	&.active {
+		display: block;
+	}
+}
+#aboutMe {
+	.tab-content {
+		background: $green;
+	}
+}
 // Picture View
 .pictureView {
 	// flexBox
@@ -280,7 +330,7 @@ img.lazyloaded {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: hsla(0,0%,0%,.75);
+	background: hsla(0,0%,0%,.8);
 	overflow: auto;
 	z-index: 99;
 	@include transition(all .3s ease);
@@ -365,12 +415,14 @@ img.lazyloaded {
 			background: $green;
 		}
 	}
-	.section__article {
-		margin: auto;
-		max-width: 1280px;
+	.section__description {
 		p {
-			line-height: 1.5em;
+			margin: 0 auto;
+			width: 500px;
 			color: hsl(0,0%,35%);
+			line-height: 1.5em;
+			font-size: 14px;
+			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
 		}
 	}
 	.section__content {
@@ -382,31 +434,46 @@ img.lazyloaded {
 }
 
 // intro
-.intro {
-	.introControl {}
-	.introContent {
-		visibility: hidden;
-		opacity: 0;
-		position: relative;
-		left: -24px;
-		@include transition(all .3s ease);
-	}
-	&.active {
-		.introControl {
-			display: none;
-		}
-		.introContent {
-			visibility: visible;
-			opacity: 1;
-			left: 0;
-		}
-	}
-}
+// .intro {
+// 	.introControl {
+// 		position: relative;
+// 		height: 500px;
+// 		p {
+// 			margin: 0 auto;
+// 			width: 500px;
+// 			color: hsl(0,0%,35%);
+// 			line-height: 1.5em;
+// 			font-size: 14px;
+// 			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
+// 		}
+// 	}
+// 	.introContent {
+// 		visibility: hidden;
+// 		opacity: 0;
+// 		position: relative;
+// 		left: -24px;
+// 	}
+// 	&.active {
+// 		.introControl {
+// 			visibility: hidden;
+// 			opacity: 0;
+// 			height: 0;
+// 			@include transition(all .3s ease);
+// 		}
+// 		.introContent {
+// 			visibility: visible;
+// 			opacity: 1;
+// 			left: 0;
+// 			@include transition(all .3s ease .3s);
+// 		}
+// 	}
+// }
 
 // Item
 .item {
 	position: relative;
 	text-align: center;
+	margin-bottom: 48px;
 	.item__img {
 		display: block;
 		position: relative;
@@ -418,8 +485,8 @@ img.lazyloaded {
 			display: block;
 			position: absolute;
 			top: 50%; left: 50%;
-			max-width: 300%;
-			max-height: 300%;
+			max-width: 200%;
+			max-height: 200%;
 			@include transform(translate(-50%, -50%));
 		}
 		i.img-mask {
@@ -439,22 +506,39 @@ img.lazyloaded {
 	// 	text-align: center;
 	// }
 	.item__info {
-		margin-top: 12px;
-		position: relative;
+		position: absolute;
+		bottom: 4px;
+		right: 50%;
+		margin-right: -13px;
 		.bubble {
 			position: absolute;
 			left: 50%; bottom: 100%;
 			width: 200px;
 			margin-left: -100px;
 			margin-bottom: 24px;
+			color: hsl(0,0%,35%);
+			font-size: 16px;
 			z-index: 2;
 			@include filter(drop-shadow(0px 0px 6px hsla(0,0%,0%,.25)));
+			span {
+				font-size: 12px;
+			}
+			a {
+				font-size: 12px;
+			}
 		}
 		.ball {
 			width: 26px;
 			height: 26px;
 			z-index: 2;
-			@include transition(all .3s ease);
+			span {
+				border-color: hsl(0,0%,80%);
+				color: hsl(0,0%,80%);
+			}
+			&.active span, &:hover span {
+				border-color: hsl(0,0%,90%);
+				color: hsl(0,0%,90%);
+			}
 		}
 	}
 }

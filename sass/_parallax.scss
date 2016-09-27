@@ -1,21 +1,34 @@
 @keyframes woof1 {
-	from {
+	0% {
+		visibility: visible;
 		left: 40%;
 		top: 100%;
 	}
-	to {
+	33% {
 		left: 5%;
 		top: -25%;
 	}
+	100% {
+		visibility: hidden;
+	}
 }
 @keyframes woof2 {
-	from {
-		left: -10%;
+	0% {
+		visibility: hidden;
+		left: -15%;
 		top: 40%;
 	}
-	to {
-		left: 100%;
+	33% {
+		visibility: visible;
+		left: -15%;
+		top: 40%;
+	}
+	66%{
+		left: 110%;
 		top: 0%;
+	}
+	100% {
+		visibility: hidden;
 	}
 }
 
@@ -51,12 +64,14 @@
 					height: auto;
 				}
 				&.woof1 {
-					animation: woof1 30s linear infinite;
+					visibility: hidden;
+					animation: woof1 60s linear infinite;
 					@include transform(rotate(-25deg));
 				}
 				&.woof2 {
-					animation: woof2 40s linear infinite;
-					@include transform(rotate(60deg));
+					visibility: hidden;
+					animation: woof2 60s linear infinite;
+					@include transform(rotate(70deg));
 				}
 			}
 		}

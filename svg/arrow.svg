@@ -6,6 +6,7 @@
 			  stroke-width="10"
 			  stroke-linecap="round"
 			  stroke-linejoin="round"
+			  fill="none"
 			  points="15.556,45.968 50,11.525 84.443,45.968"/>
 
 	<line stroke="#FFF"

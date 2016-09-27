@@ -225,7 +225,7 @@ $(document).ready(function() {
 	})
 	$('#backControl').on('click', function() {
 		$('.main').removeClass('open')
-        $('.intro').removeClass('active')
+        $('.intro, .section').removeClass('active')
 	})
 
     // SubNav Control
@@ -246,14 +246,38 @@ $(document).ready(function() {
 
     // Bubble Control
     $('.bubbleControl').on('click', function() {
-        $(this).toggleClass('active')
-        $(this).siblings('.bubble').toggleClass('hide')
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active')
+            $(this).siblings('.bubble').addClass('hide')
+
+        }
+        else {
+            $('.bubbleControl').removeClass('active')
+            $('.bubble').addClass('hide')
+            $(this).addClass('active')
+            $(this).siblings('.bubble').removeClass('hide')
+        }
     })
 
     // intro Control
-    $('.introControl button').on('click', function() {
-        var $intro = $(this).parents('.intro')
-        $intro.addClass('active')
+    // $('.introControl button').on('click', function() {
+    //     var $intro = $(this).parents('.intro')
+    //     $intro.addClass('active')
+    // })
+
+    // Tabs
+    $('.tab button').on('click', function() {
+        var tabTarget  = $(this).data('tab'),
+            $tabTarget = $(tabTarget)
+
+        if ($(this).hasClass('active')) {
+            return
+        }
+        else {
+            $('.tab button, .tab-content').removeClass('active');
+            $(this).addClass('active')
+            $tabTarget.addClass('active')
+        }
     })
 
 })
