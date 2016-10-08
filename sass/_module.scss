@@ -1,3 +1,15 @@
+// ScrollBar
+::-webkit-scrollbar {
+	position: relative;
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: hsla(0,0%,0%,.1);
+}
+::-webkit-scrollbar-thumb {
+    background: hsla(0,0%,0%,.15);
+}
+
 // Lazyload
 @keyframes lazyloadAni {
 	50% {
@@ -111,19 +123,6 @@ img.lazyloaded {
 	}
 }
 
-// ScrollBar
-
-::-webkit-scrollbar {
-	position: relative;
-    width: 4px;
-}
-::-webkit-scrollbar-track {
-    background: hsla(0,0%,0%,.1);
-}
-::-webkit-scrollbar-thumb {
-    background: hsla(0,0%,0%,.15);
-}
-
 // Bubble
 .bubble {
 	// Temp
@@ -187,6 +186,7 @@ img.lazyloaded {
 		}
 	}
 }
+
 // Progress
 .progress {
 	position: relative;
@@ -202,8 +202,99 @@ img.lazyloaded {
 		background: #FFF;
 	}
 }
-
+// Button 
+.button {
+	display: inline-block;
+	position: relative;
+	margin: 0px 6px;
+	border: 8px solid transparent;
+	border-image: url('../svg/border.svg') 4 round;
+	padding: 3px 12px;
+	font-size: 16px;
+	span {
+		font-size: 16px;
+	}
+	&.prev {
+		padding: 3px 12px 3px 36px;
+		span:before {
+			content: "";
+			position: absolute;
+			top: 6px;
+			left: 6px;
+			width: 22px;
+			height: 22px;
+			background-image: url('../svg/arrow.svg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			@include transform(rotate(-90deg));
+			@include transition(all .15s ease);
+		}
+	}
+	&.next {
+		padding: 3px 36px 3px 12px;
+		span:before {
+			content: "";
+			position: absolute;
+			top: 6px;
+			right: 6px;
+			width: 22px;
+			height: 22px;
+			background-image: url('../svg/arrow.svg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			@include transform(rotate(90deg));
+			@include transition(all .15s ease);
+		}
+	}
+	&:hover {
+		&.prev span:before {
+			left: 2px;
+		}
+		&.next span:before {
+			right: 2px;
+		}
+	}
+}
 // Modal Box
+@keyframes modalBounce {
+	0% {
+		@include transform(scale(.1,.1));
+	}
+	75% {
+		@include transform(scale(1.05, 1.05));
+	}
+	100% {
+		@include transform(scale(1, 1));
+	}
+}
+// Close
+.close {
+	position: fixed;
+	top: 24px;
+	right: 24px;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	&:hover {
+		&:before, &:after {
+			background: $green;
+		}
+	}
+	&:before, &:after {
+		position: absolute;
+		top: 24px;
+		left: 0;
+		content: "";
+		border-radius: 6px;
+		width: 48px;
+		height: 6px;
+		background: #FFF;
+		@include transform(rotate(45deg));
+	}
+	&:after {
+		@include transform(rotate(-45deg));
+	}
+}
 .modal {
 	visibility: hidden;
 	opacity: 0;
@@ -212,51 +303,22 @@ img.lazyloaded {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: hsla(0,0%,0%,.8);
+	// background: rgba($green,.85);
 	overflow: auto;
 	z-index: 99;
 	@include transition(all .3s ease);
-	.modal__close {
-		position: absolute;
-		top: 24px;
-		right: 24px;
-		width: 50px;
-		height: 50px;
-		cursor: pointer;
-		&:hover {
-			&:before, &:after {
-				background: $green;
-			}
-		}
-		&:before, &:after {
-			position: absolute;
-			top: 24px;
-			left: 0;
-			content: "";
-			border-radius: 6px;
-			width: 48px;
-			height: 6px;
-			background: #FFF;
-			@include transform(rotate(45deg));
-		}
-		&:after {
-			@include transform(rotate(-45deg));
-		}
-	}
 	.modal__content {
-		visibility: hidden;
-		position: relative;
+		display: none;
 		margin: 5% auto;
 		border-radius: 12px;
-		max-width: 750px;
 		overflow: hidden;
+		box-shadow: 0px 0px 12px hsla(0,0%,0%,.5);
+		animation: modalBounce .3s ease alternate forwards;
 		@include transform(scale(.1,.1));
-		@include transition(all .3s cubic-bezier(0.46, -0.2, 0.61, 1.28));
 		p {
 			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
-			line-height: 2em;
+			line-height: 1.5em;
 			font-size: 14px;
-			color: #FFF;
 		}
 		.modal__content--head {
 			
@@ -268,15 +330,14 @@ img.lazyloaded {
 		.modal__content--footer {
 
 		}
-		&.active {
-			visibility: visible;
-			opacity: 1;
-			@include transform(scale(1,1));
-		}
 	}
 	&.active {
 		visibility: visible;
 		opacity: 1;
+		.modal__content {
+			display: block;
+			animation: modalBounce .3s ease forwards;
+		}
 	}
 }
 
@@ -313,6 +374,7 @@ img.lazyloaded {
 		background: $green;
 	}
 }
+
 // Picture View
 .pictureView {
 	// flexBox
@@ -334,33 +396,6 @@ img.lazyloaded {
 	overflow: auto;
 	z-index: 99;
 	@include transition(all .3s ease);
-	.pictureView__close {
-		position: absolute;
-		top: 24px;
-		right: 24px;
-		width: 50px;
-		height: 50px;
-		cursor: pointer;
-		&:hover {
-			&:before, &:after {
-				background: $green;
-			}
-		}
-		&:before, &:after {
-			position: absolute;
-			top: 24px;
-			left: 0;
-			content: "";
-			border-radius: 6px;
-			width: 48px;
-			height: 6px;
-			background: #FFF;
-			@include transform(rotate(45deg));
-		}
-		&:after {
-			@include transform(rotate(-45deg));
-		}
-	}
 	.pictureView__img {
 		position: relative;
 	    width: auto;
@@ -368,8 +403,6 @@ img.lazyloaded {
 	    max-width: 90%;
 	    max-height: 90%;
 	    box-shadow: 3px 3px 8px 2px hsla(0,0%,0%,.2);
-		// @include transform(scale(.1,.1));
-		// @include transition(all .3s cubic-bezier(0.46, -0.2, 0.61, 1.28));
 	}
 	.pictureView__control {
 		.prev, .next {
@@ -399,6 +432,160 @@ img.lazyloaded {
 	}
 }
 
+// Picture View
+.webView {
+	// flexBox
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+
+	visibility: hidden;
+	opacity: 0;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: hsla(0,0%,20%,1);
+	overflow: auto;
+	z-index: 99;
+	@include transition(all .3s ease);
+	&.active {
+		visibility: visible;
+		opacity: 1;
+	}
+	.webView__item {
+		display: none;
+		border-radius: 0;
+		width: 1024px;
+		@include transform(scale(.1,.1));
+		&.active {
+			display: block;
+			animation: modalBounce .3s ease;
+			animation-fill-mode: forwards;
+		}
+		.webView__view {
+			text-align: center;
+	  		.img-wrap {
+	  			position: relative;
+	  			border: 2px solid hsla(0,0%,100%,.15);
+				overflow: hidden;
+				div {
+					display: none;
+					position: absolute;
+					top: 0;
+					width: 100%;
+					height: 100%;
+					@include transition(all .5s ease);
+					img {
+						display: block;
+						width: 100%;
+						height: auto;
+					}
+					&.active {
+						display: block;
+						left: 0;
+						z-index: 2;
+					}
+					&.next {
+						display: block;
+						left: 100%;
+						z-index: 1;
+					}
+					&.prev {
+						display: block;
+						left: -100%;
+						z-index: 1;
+					}
+					i.img-mask {
+						position: absolute;
+						top:0; left:0;
+						width: 100%;
+						height: 100%;
+					}
+				}
+	  		}
+			.webView__view--mobile {
+				display: inline-block;
+				vertical-align: bottom;
+				margin-right: 6px;
+				border: 12px solid transparent;
+		  		border-image: url('../svg/border.svg') 32 round;
+				padding-top: 12px;
+				padding-bottom: 24px;
+		  		.img-wrap {
+					width: 200px;
+					height: 355px;
+		  		}
+			}
+			.webView__view--pc {
+				display: inline-block;
+				vertical-align: bottom;
+				border: 12px solid transparent;
+		  		border-image: url('../svg/border.svg') 64 round;
+				padding: 4px;
+				padding-bottom: 24px;
+				.img-wrap {
+					width: 740px;
+					height: 400px;
+				}
+			}
+			.webView__view--control {
+				margin-top: 24px;
+				button {
+					border-radius: 12px;
+					color: #FFF;
+					@include transition(all .15s ease);
+					&:hover {
+		  				background: hsla(0,0%,100%,.25);
+					}
+				}
+			}
+		}
+		.webView__content {
+			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
+	  		color: #FFF;
+	  		.webView__content--title {
+	  			margin-bottom: 12px;
+		  		h1 {
+		  			display: inline-block;
+		  			vertical-align: bottom;
+		  			margin-bottom: 4px;
+		  			font-size: 24px;
+		  		}
+		  		.button {
+		  			display: inline-block;
+		  			vertical-align: bottom;
+					position: relative;
+					border-radius: 12px;
+					border: 8px solid transparent;
+					border-image: url('../svg/border.svg') 4 round;
+					padding: 0;
+		  			box-sizing: border-box;
+		  			@include transition(all .15s ease);
+		  			span {
+		  				display: block;
+		  				width: 16px;
+		  				height: 16px;
+		  				background-image: url('../svg/link.svg');
+		  				background-size: cover;
+		  			}
+		  			&:hover {
+		  				background: hsla(0,0%,100%,.25);
+		  			}
+		  		}
+	  		}
+			p {
+				font-size: 13px;
+				line-height: 1.4em;
+			}
+		}
+	}
+}
+
 // Section
 .section {
 	padding: 60px;
@@ -406,13 +593,11 @@ img.lazyloaded {
 		text-align: center;
 		h1 {
 			font-size: 60px;
-			color: $green;
 		}
 		hr {
 			border: 0;
 			width: 120px;
 			height: 5px;
-			background: $green;
 		}
 	}
 	.section__description {
@@ -422,52 +607,13 @@ img.lazyloaded {
 			color: hsl(0,0%,35%);
 			line-height: 1.5em;
 			font-size: 14px;
-			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
+			// font-family: Microsoft JhengHei, arial, helvetica, san-serif;
 		}
 	}
 	.section__content {
 		margin-top: 24px;
-		height: 500px;
-		overflow-y: auto;
-		overflow-x: hidden;
 	}
 }
-
-// intro
-// .intro {
-// 	.introControl {
-// 		position: relative;
-// 		height: 500px;
-// 		p {
-// 			margin: 0 auto;
-// 			width: 500px;
-// 			color: hsl(0,0%,35%);
-// 			line-height: 1.5em;
-// 			font-size: 14px;
-// 			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
-// 		}
-// 	}
-// 	.introContent {
-// 		visibility: hidden;
-// 		opacity: 0;
-// 		position: relative;
-// 		left: -24px;
-// 	}
-// 	&.active {
-// 		.introControl {
-// 			visibility: hidden;
-// 			opacity: 0;
-// 			height: 0;
-// 			@include transition(all .3s ease);
-// 		}
-// 		.introContent {
-// 			visibility: visible;
-// 			opacity: 1;
-// 			left: 0;
-// 			@include transition(all .3s ease .3s);
-// 		}
-// 	}
-// }
 
 // Item
 .item {
@@ -492,7 +638,7 @@ img.lazyloaded {
 		i.img-mask {
 			display: block;
   			position: absolute;
-  			top: 0; left: 0;
+  			top: 0; left: 0; right: 0;
   			width: 100%; height: 100%;
 			border: 3px solid transparent;
 	  		border-image: url('../svg/img-cover.svg') 12 round;
@@ -500,11 +646,6 @@ img.lazyloaded {
 	  		@include box-sizing(border-box);
 		}
 	}
-	// .item__name {
-	// 	display: inline-block;
-	// 	vertical-align: middle;
-	// 	text-align: center;
-	// }
 	.item__info {
 		position: absolute;
 		bottom: 4px;

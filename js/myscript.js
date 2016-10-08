@@ -42,20 +42,39 @@ function Parallax() {
     pointX = 0;
     pointY = 0;
 
-    function Layer(elem, delta) {
+    function Layer(elem, deltaX, deltaY) {
         this.elem = elem
-        this.delta  = delta
+        this.deltaX  = deltaX
+        this.deltaY  = deltaY
     }
 
     var layers = []
     $('.parallax--layer').each(function() {
-        var delta = $(this).data('parallax')
-        layers.push(new Layer(this, delta))
+        var deltaX = $(this).data('delta-x')
+        var deltaY = $(this).data('delta-y')
+        layers.push(new Layer(this, deltaX, deltaY))
     })
+    // ParallaxBase
+    function parallaxBase() {
+        $('.parallax--base').each(function(){
+            var baseWidth = $(this).outerWidth(),
+                baseHeight= $(this).outerHeight()
+
+            $(this).css({
+                'margin-top' : -1 * baseHeight / 2 + 'px',
+                'margin-left': -1 * baseWidth  / 2 + 'px'
+            })
+        })
+    }
+    parallaxBase()
 
     $(window).on('mousemove' , function(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
+    });
+
+    $(window).resize(function() {
+        parallaxBase()
     });
 
     function run() {
@@ -65,8 +84,8 @@ function Parallax() {
         newY += ( pointY - newY ) * 1/6;
 
         layers.forEach(function(layer) {
-            parallaxX = newX / layer.delta,
-            parallaxY = newY / layer.delta;
+            parallaxX = newX / layer.deltaX,
+            parallaxY = newY / layer.deltaY;
             var $elem = $(layer.elem)
             $elem.css({
                 'transform': 'translate(' + parallaxX + 'px, ' + parallaxY + 'px)' 
@@ -106,6 +125,8 @@ function ModalBox() {
         $modalBox.addClass('active')
         $modalTarget.addClass('active')
 
+        // lazyload
+        lazyload($modalTarget)
     })
 }
 
@@ -132,7 +153,7 @@ function PictureView() {
     })
 
     $pictureControl.on('click', function() {
-        $(this).parent('.item').addClass('active')
+        $(this).parents('.item').addClass('active')
 
         var $pictureItem = $('.item.active')
         var pictureSrc   = $pictureItem.find('img').attr('src')
@@ -170,6 +191,80 @@ function PictureView() {
     }
 }
 
+// WebView
+function WebView() {
+    $webView      = $('.webView')
+    $webViewItem  = $('.webView__item')
+    $webClose     = $('.webView__close')
+
+    $webActive    = $('.webView__item.active') 
+
+    $controlPrev  = $webViewItem.find('.webView__view--control .prev')
+    $controlNext  = $webViewItem.find('.webView__view--control .next')
+
+    $webImgWrap   = $webViewItem.find('.img-wrap')
+    $webImg       = $webImgWrap.find('div')
+
+
+    $webImgWrap.find('div:first-child').addClass('active')
+    $webImgWrap.find('div:nth-child(2)').addClass('next')
+
+
+    // Close
+    $webClose.on('click',function() {
+        $webView.removeClass('active')
+        $webViewItem.removeClass('active')
+
+        // reset
+        $webImg.attr('class','')
+        $webImgWrap.find('div:first-child').addClass('active')
+        $webImgWrap.find('div:nth-child(2)').addClass('next')
+    })
+    $(window).on('click',function(e) {
+        var clickTarget = $(e.target)
+        if (clickTarget.is('.webView')) {
+            $webView.removeClass('active')
+            $webViewItem.removeClass('active')
+        }
+    })
+
+    function nameImg() {
+        var $webImgActive = $webImgWrap.find('div.active'),
+            $webImgPrev   = $webImgActive.prev(),
+            $webImgNext   = $webImgActive.next()
+        $webImgPrev.attr('class','prev')
+        $webImgNext.attr('class','next')
+    }
+
+    $controlPrev.on('click', function() {
+        $webImgWrap.each(function() {
+            var $webImgActive = $(this).find('div.active'),
+                $webImg       = $(this).find('div')
+            if ($webImgActive.index() === 0) {
+                return
+            }
+            else {
+                $webImgActive.removeClass('active').prev().attr('class','active')
+                nameImg()
+            }
+        })
+    })
+
+    $controlNext.on('click', function() {
+        $webImgWrap.each(function() {
+            var $webImgActive = $(this).find('div.active'),
+                $webImg       = $(this).find('div')
+            if ($webImgActive.index() === $webImg.length - 1) {
+                return
+            }
+            else {
+                $webImgActive.removeClass('active').next().attr('class','active')
+                nameImg()
+            }
+        })
+    })
+}
+
 // Lazyload
 function lazyload(elem) {
 
@@ -189,6 +284,7 @@ function lazyload(elem) {
     }).on('load', loadCheck)
 }
 
+
 $(document).ready(function() {
 
     // ModalBox
@@ -197,15 +293,18 @@ $(document).ready(function() {
     // PictureView
     PictureView()
 
-    // Parallax
-    $('.parallax--base').each(function(){
-        var baseWidth = $(this).outerWidth(),
-            baseHeight= $(this).outerHeight()
+    // webView
+    WebView()
 
-        $(this).css({
-            'margin-top' : -1 * baseHeight / 2 + 'px',
-            'margin-left': -1 * baseWidth  / 2 + 'px'
-        })
+    // Style Control
+    $('#styleControl').on('click','button', function() {
+        var target = $(this).attr('class')
+
+        $('body').attr('id', target)
+
+        // Parallax
+        // $('.parallax .parallax__item').removeClass('active')
+        // $('.parallax').find(target).addClass('active')
     })
 
     // Nav Control
@@ -216,16 +315,20 @@ $(document).ready(function() {
             targetSubnav  = '.subnav-' + target
             $targetSubnav = $(targetSubnav)
 		$('.main').addClass('open')
-		$('.main__section, .main__subnav__button').removeClass('active')
+		$('.main__section, .sectionControl').removeClass('active')
         $targetMain.addClass('active')
 		$targetSubnav.addClass('active')
+        setTimeout(function() {
+            $targetMain.find('.section__content').addClass('active')
+            $('.subnav').addClass('open')
+        }, 1000)
 
         // lazyload
         lazyload($targetMain)
 	})
 	$('#backControl').on('click', function() {
-		$('.main').removeClass('open')
-        $('.intro, .section').removeClass('active')
+		$('.main, .subnav').removeClass('open')
+        $('.intro, .section, .section__content, .subnav').removeClass('active')
 	})
 
     // SubNav Control
@@ -235,10 +338,14 @@ $(document).ready(function() {
     $('.sectionControl').on('click', function() {
         var target  = '#' + $(this).data('target'),
             $target = $(target)
-        $('.sectionControl, #subnav, .main__section').removeClass('active')
+        $('.sectionControl, #subnav, .section, .section__content').removeClass('active')
         $target.addClass('active')
+
+        setTimeout(function() {
+            $target.find('.section__content').addClass('active')
+        }, 300)
+
         $(this).addClass('active')
-        $('.intro').removeClass('active')
 
         // lazyload
         lazyload($target)
@@ -259,12 +366,6 @@ $(document).ready(function() {
         }
     })
 
-    // intro Control
-    // $('.introControl button').on('click', function() {
-    //     var $intro = $(this).parents('.intro')
-    //     $intro.addClass('active')
-    // })
-
     // Tabs
     $('.tab button').on('click', function() {
         var tabTarget  = $(this).data('tab'),
@@ -280,4 +381,38 @@ $(document).ready(function() {
         }
     })
 
+    // Web Control
+    $('.webControl').on('click', function() {
+        var webTarget   = $(this).attr('href'),
+            $webTarget  = $(webTarget)
+
+        $('.webView').addClass('active')
+        $webTarget.addClass('active')
+
+        // lazyload
+        lazyload($webTarget)
+    })
+
+    // illustration delay
+    function itemDelay() {
+        $illusItem = $('#illus').find('.item')
+        $photosItem = $('#photos').find('.item')
+        $illusItem.each(function() {
+            var itemNum = $(this).index() * 0.1
+            $(this).css('animation-delay', itemNum + 's')
+        })
+        $photosItem.each(function() {
+            var itemNum = $(this).index() * 0.1
+            $(this).css('animation-delay', itemNum + 's')
+        })
+    }
+    itemDelay()
+
+    // about
+    $('.boardControl button').click(function() {
+        var target = $(this).data('target')
+        $('.board--content__item, .board--mask div').removeClass('active')
+        $('.board--content').find(target).addClass('active')
+        $('.board--mask').find(target).addClass('active')
+    })
 })

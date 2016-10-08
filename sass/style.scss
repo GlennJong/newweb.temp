@@ -36,9 +36,6 @@ button {
 // Module
 @import '_module';
 
-// SVG
-@import '_svg';
-
 // Heading
 @import '_heading';
 
@@ -121,3 +118,88 @@ button {
 
 // Partial
 @import '_partial';
+
+
+// style control
+#styleControl {
+	position: absolute;
+	bottom: 12px;
+	right: 12px;
+	z-index: 1;
+	button {
+		opacity: .5;
+		width: 30px;
+		height: 30px;
+		&:hover {
+			opacity: 1;
+		}
+		&.green {
+			background: $green;
+		}
+		&.blue {
+			background: $blue;
+		}
+		&.orange {
+			background: $orange;
+		}
+	}
+}
+body#green {
+	.parallax .green {
+		visibility: visible;
+		opacity: 1;
+		z-index: 0;
+	}
+	.subnav {
+		background: $green;
+		.subnav__button {
+			background: $green;
+		}
+	}
+	.section {
+		.section__title {
+			h1 { color: $green}
+			hr { background: $green}
+		}
+	}
+}
+
+body#blue {
+	.parallax .blue {
+		visibility: visible;
+		opacity: 1;
+		z-index: 0;
+	}
+	.subnav {
+		background: $blue;
+		.subnav__button {
+			background: $blue;
+		}
+	}
+	.section {
+		.section__title {
+			h1 { color: $blue}
+			hr { background: $blue}
+		}
+	}
+}
+
+body#orange {
+	.parallax .orange {
+		visibility: visible;
+		opacity: 1;
+		z-index: 0;
+	}
+	.subnav {
+		background: $orange;
+		.subnav__button {
+			background: $orange;
+		}
+	}
+	.section {
+		.section__title {
+			h1 { color: $orange}
+			hr { background: $orange}
+		}
+	}
+}

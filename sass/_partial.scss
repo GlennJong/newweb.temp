@@ -15,64 +15,67 @@
 }
 
 // SubNavbar
-@keyframes subnavButton {
-	0% {
-	}
-	50% {
-		display: inline-block;
-		@include transform(scale(0,0));
-	}
-	100% {
-		display: inline-block;
-		@include transform(scale(1,1));
-	}
-}
-@keyframes subnavBg {
-	50% {
-		top: 0;
-		left: 0;
-		width: 100px;
-		height: 100px;
-	}
-	100% {
-		top: 0;
-		left: 0;
-		border-radius: 50px;
-		width: 380px;
-		height: 100px;
-	}
-}
 .subnav {
 	position: absolute;
-	top: 0px;
-	left: 0px;
-	@include transition(all .3s ease);
-	button {
+	top: -240px;
+	left: -240px;
+	border-radius: 50%;
+	width: 240px;
+	height: 240px;
+	@include transition(all .3s ease .3s);
+	@include transform(rotate(135deg));
+	z-index: 1;
+	&:before {
+		content: "";
 		position: absolute;
-		top: 0;
-		left: 0;
+		top: 24px; right: 90px;
+		width: 60px;
+		height: 60px;
+		background-image: url('../svg/menu.svg');
+		background-size: cover;
+	}
+	&.open {
+		top: -120px;
+		left: -120px;
+	}
+	&:hover {
+		@include transform(rotate(-45deg));
+		@include transition(all .3s ease);
+		.subnav-menu {
+			visibility: hidden;
+			opacity: 0;
+			z-index: -1;
+		}
+	}
+	.subnav__button {
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		margin-left: -60px;
 		width: 120px;
 		height: 120px;
-		z-index: 1;
-		@include transform(rotate(-45deg));
-		@include transform-origin(right bottom);
+		border-radius: 50%;
+		z-index: 2;
 		@include transition(all .3s ease);
 		.icon {
 			margin: auto;
-			margin-top: -24px;
-			margin-bottom: -12px;
-			width: 80px;
-			height: 80px;
-			@include transition(all .3s ease);
+			width: 70px;
+			height: 70px;
+			@include transition(all .3s ease .3s);
 		}
 		span {
+			position: absolute;
+			display: block;
+			top: 84px;
+			left: 0;
+			width: 100%;
 			color: #FFF;
-			font-size: 18px;
+			font-size: 16px;
 			@include transition(all .3s ease .3s);
 		}
 		&.subnav-close {
 			opacity: 0;
-			z-index: 3;
+			z-index: 4;
 			.icon { background-image: url('../svg/cross.svg')}
 		}
 		&.subnav-illus {
@@ -81,39 +84,27 @@
 		&.subnav-photos {
 			.icon { background-image: url('../svg/photos.svg')}
 		}
-		&.subnav-portfolio {
-			.icon { background-image: url('../svg/portfolio.svg')}
-		}
 		&.subnav-web {
 			.icon { background-image: url('../svg/web.svg')}
 		}
-		&:before {
-			content: "";
-			position: absolute;
-			bottom: 0; left: 50%;
-			width: 200%; height: 200%;
-			border-radius: 50%;
-			background: $green;
-			z-index: -1;
-			@include transform(translateX(-50%));
-			@include transition(all .3s ease);
+		&.subnav-about {
+			.icon { background-image: url('../svg/me.svg')}
 		}
 		&.active {
-			z-index: 2;
+			z-index: 3;
 		}
 	}
 	&.active {
-		top: 12px;
-		left: 12px;
-		button {
-			padding-top: 48px;
-			width: 75px;
-			height: 75px;
-			@include transform(rotate(0deg));
-			@include transition(all .3s ease,
-								left .3s ease .3s);
+		@include transform(rotate(-45deg));
+		@include transition(all .3s ease);
+		.subnav__button {
+			margin-left: -35px;
+			bottom: 12px;
+			width: 70px;
+			height: 70px;
+			@include transform(rotate(45deg));
+			@include transition(all .3s ease);
 			.icon {
-				margin-top: -36px;
 				width: 50px;
 				height: 50px;
 				@include transition(all .3s ease);
@@ -126,58 +117,192 @@
 			&.subnav-close {
 				opacity: 1;
 			}
-			&:hover:before {
-				background: $orange;
-			}
-			&:before {
-				width: 100%;
-				height: 100%;
-			}
-			&:first-child {left:0}
-			&:nth-child(2) {left:90px}
-			&:nth-child(3) {left:180px}
-			&:nth-child(4) {left:270px}
-			&:nth-child(5) {left:360px}
+			&:nth-child(2) {left: 240px; bottom: -80px}
+			&:nth-child(3) {left: 160px; bottom: -120px}
+			&:nth-child(4) {left: 75px; bottom: -120px}
+			&:nth-child(5) {left: 0px; bottom: -80px}
 		}
 	}
 }
 
+// Modal
+.modal {
+	#aboutSite {
+		max-width: 750px;
+	}
+}
 
 // illustration
+@keyframes illusItem {
+	from {
+		left: -20px;
+		opacity: 0;
+	}
+	to {
+		left: 0px;
+		opacity: 1;
+		visibility: visible;
+	}
+}
 #illus {
-	// .draw-ani {
-	// 	.pencil {
-	// 		opacity: 0;
-	// 		position: absolute;
-	// 		right: -150px;
-	// 		bottom: 100px;
-	// 		width: 300px;
-	// 		height: 300px;
-	// 		background: url('../svg/pencil.svg');
-	// 		@include transform(rotate(45deg));
-	// 		@include transform-origin(0% 100%);
-	// 	}
-	// 	.drawline {
-	// 		position: absolute;
-	// 		right: 155px;
-	// 		bottom: 7px;
-	// 		border-radius: 2px;
-	// 		width: 0px;
-	// 		height: 4px;
-	// 		background: #595959;
-	// 	}
-	// }
-	// &.active .draw-ani {
-	// 	.pencil {
-	// 		opacity: 1;
-	// 		right: -100px;
-	// 		bottom: 0px;
-	// 		@include transform(rotate(0deg));
-	// 		@include transition(all .5s ease-in-out 1s);
-	// 	}
-	// 	.drawline {
-	// 		width: 100%;
-	// 		@include transition(width 5s linear 1.5s);
-	// 	} 
-	// }
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	.illus__content {
+		display: none;
+		&.active {
+			display: block;
+		}
+		.illus__content--item {
+			visibility: hidden;
+			position: relative;
+			animation: illusItem .3s ease forwards;
+			.item__img {
+				height: 200px;
+			}
+		}
+	}
+}
+#photos {
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	.photos__content {
+		display: none;
+		&.active {
+			display: block;
+		}
+		.photos__content--item {
+			visibility: hidden;
+			position: relative;
+			animation: illusItem .3s ease forwards;
+			.photos__content--item__wrap {
+				padding: 6px;
+				background: #FFF;
+				box-sizing: border-box;
+				@include box-shadow(0px 0px 4px hsla(0,0%,0%,.4));
+			}
+			.item__img {
+				height: 220px;
+				i.img-mask {
+					border: 0;
+				}
+			}
+		}
+	}
+}
+#about {
+	.about__content {
+		.board {
+			position: fixed;
+			left: 50%;
+			bottom: 0;
+			margin-left: -300px;
+			width: 650px;
+			height: 650px;
+			.board--content {
+				position: absolute;
+				top: 30px;
+				left: 140px;
+				width: 380px;
+				height: 300px;
+				p {
+					font-family: Microsoft JhengHei, arial, helvetica, san-serif;
+					line-height: 1.5em;
+					font-size: 14px;
+				}
+			}
+			.board--btn {
+				position: absolute;
+				bottom: 50px;
+				left: 250px;
+				width: 160px;
+				height: 200px;
+				z-index: 1;
+				button {
+					display: block;
+					margin: auto;
+					font-size: 34px;
+					text-align: center;
+					color: hsl(0,0%,35%);
+					&:hover {
+						color: #FFF;
+					}
+				}
+			}
+			.board--mask {
+				position: absolute;
+				top:0; left:0;
+				width: 100%;
+				height: 100%;
+  				-webkit-clip-path: polygon(22% 54.5%, 24% 53.5%, 80.5% 53.5%, 78% 60%, 78.5% 63%, 69.5% 58%, 68% 58%, 69.5% 89%, 69.5% 89%, 70% 96%, 31% 96%, 33% 79%, 33.5% 58%, 27.5% 63.5%);
+  				clip-path: 		   polygon(22% 54.5%, 24% 53.5%, 80.5% 53.5%, 78% 60%, 78.5% 63%, 69.5% 58%, 68% 58%, 69.5% 89%, 69.5% 89%, 70% 96%, 31% 96%, 33% 79%, 33.5% 58%, 27.5% 63.5%);
+  				overflow: hidden;
+  				div {
+  					visibility: hidden;
+  					opacity: 0;
+					-webkit-transform: translate3d(0px, 0px, 0px);
+  					@include transition(all .3s ease);
+  					&.active {
+  						visibility: visible;
+  						opacity: 1;
+  					}
+  				}
+				#who {
+					position: absolute;
+					top:0; left:0;
+					width: 100%;
+					height: 100%;
+					background-image: linear-gradient($green 70%, transparent 30%);
+					background-size: 100% 14px;
+					background-repeat: repeat-y;
+				}
+				#skills {
+					position: absolute;
+					top:0; left:0;
+					width: 100%;
+					height: 100%;
+					background-image: linear-gradient(90deg, transparent 0%, transparent 10%,
+						                                     rgba($blue,.6) 10%, rgba($blue,.6) 20%,
+						                                     transparent 20%, transparent 30%,
+						                                     rgba($blue,.6) 30%, rgba($blue,.6) 70%,
+						                                     transparent 70%, transparent 80%,
+						                                     rgba($blue,.6) 80%, rgba($blue,.6) 90%,
+						                                     transparent 90%, transparent 100%),
+					                  linear-gradient(0deg,  transparent 0%, transparent 10%,
+						                                     rgba($blue,.6) 10%, rgba($blue,.6) 20%,
+						                                     transparent 20%, transparent 30%,
+						                                     rgba($blue,.6) 30%, rgba($blue,.6) 70%,
+						                                     transparent 70%, transparent 80%,
+						                                     rgba($blue,.6) 80%, rgba($blue,.6) 90%,
+						                                     transparent 90%, transparent 100%);
+					background-size: 20px 20px;
+					background-size: 50px 50px;
+					background-repeat: repeat;
+				}
+				#contact {
+					position: absolute;
+					top:0; left:0;
+					width: 100%;
+					height: 100%;
+					background-image: radial-gradient( white 15%, transparent 16% ),
+						              radial-gradient( white 15%, transparent 16% ),
+						              linear-gradient( $orange 0, $orange );
+					background-size: 60px 60px;
+					background-position: 0 0, 30px 30px, 0 0;
+				}
+			}
+			.board--bg {
+				position: absolute;
+				top: 0; left:0;
+				width: 100%;
+				height: 100%;
+				background-image: url('../svg/board.svg');
+				background-size: 100% 100%;
+				z-index: 0;
+			}
+		}
+	}
 }
