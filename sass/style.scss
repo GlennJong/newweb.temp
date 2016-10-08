@@ -1,0 +1,205 @@
+@import 'compass/reset';
+@import 'compass/css3';
+// @import 'https://fonts.googleapis.com/css?family=Baloo+Tamma';
+
+$orange: #D9753E;
+$green:  #98BF79;
+$blue:   #6699CC;
+// Common
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+body {
+	font-family: 'Baloo Tamma', cursive;
+	font-weight: 400;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+	&:hover, &:focus {
+		outline: none;
+	}
+}
+button {
+	background: transparent;
+	border: 0;
+	font-family: 'Baloo Tamma', cursive;
+	font-weight: 400;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+}
+
+// Module
+@import '_module';
+
+// Heading
+@import '_heading';
+
+// Wrap
+.wrapper {
+	position: absolute;
+	top:0; left:0;
+	width:100%; height:100%;
+	display: -webkit-flex;
+	display:         flex;
+	-webkit-align-items: center;
+	    	align-items: center;
+	-webkit-justify-content: center;
+	    	justify-content: center;
+}
+
+// Parallax
+@import '_parallax';
+
+// Main
+.main {
+	position: absolute;
+	top: 100%;
+	right: 100%;
+	width: 100%;
+	height: 100%;
+	background: url('../img/common/bg.jpg');
+	overflow: hidden;
+	z-index: 2;
+	@include box-shadow(0px 0px 12px hsla(0,0%,0%,.5));
+	@include transform(rotate(90deg));
+	@include transform-origin(0%, 0%);
+	@include transition(all 1s ease);
+	&.open {
+		top: 0;
+		right: 0;
+		@include transform(rotate(0deg));
+	}
+	.main__back {
+		position: absolute;
+		right: 12px;
+		top: 12px;
+		svg {
+			width: 60px;
+			height: 60px;
+			polyline {
+				fill: none;
+				stroke: hsl(0,0%,40%);
+				stroke-width: 9px;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+			}
+		}
+		&:hover {
+			polyline {
+				stroke: $orange;
+			}
+		}
+	}
+	.main__subnav {
+		// position: absolute;
+		// top: 0px;
+		// left: 0px;
+		// @include transition(all .3s ease);
+	}
+	.main__section {
+		visibility: hidden;
+		opacity: 0;
+		position: absolute;
+		width: 100%;
+		box-sizing: border-box;
+		z-index: -1;
+		&.active {
+			visibility: visible;
+			opacity: 1;
+			@include transition(opacity .3s ease);
+		}
+	}
+}
+
+// Partial
+@import '_partial';
+
+
+// style control
+#styleControl {
+	position: absolute;
+	bottom: 12px;
+	right: 12px;
+	z-index: 1;
+	button {
+		opacity: .5;
+		width: 30px;
+		height: 30px;
+		&:hover {
+			opacity: 1;
+		}
+		&.green {
+			background: $green;
+		}
+		&.blue {
+			background: $blue;
+		}
+		&.orange {
+			background: $orange;
+		}
+	}
+}
+body#green {
+	.parallax .green {
+		visibility: visible;
+		opacity: 1;
+		z-index: 0;
+	}
+	.subnav {
+		background: $green;
+		.subnav__button {
+			background: $green;
+		}
+	}
+	.section {
+		.section__title {
+			h1 { color: $green}
+			hr { background: $green}
+		}
+	}
+}
+
+body#blue {
+	.parallax .blue {
+		visibility: visible;
+		opacity: 1;
+		z-index: 0;
+	}
+	.subnav {
+		background: $blue;
+		.subnav__button {
+			background: $blue;
+		}
+	}
+	.section {
+		.section__title {
+			h1 { color: $blue}
+			hr { background: $blue}
+		}
+	}
+}
+
+body#orange {
+	.parallax .orange {
+		visibility: visible;
+		opacity: 1;
+		z-index: 0;
+	}
+	.subnav {
+		background: $orange;
+		.subnav__button {
+			background: $orange;
+		}
+	}
+	.section {
+		.section__title {
+			h1 { color: $orange}
+			hr { background: $orange}
+		}
+	}
+}

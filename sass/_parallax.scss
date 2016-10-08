@@ -1,0 +1,261 @@
+@keyframes cloudMove {
+	from {
+		top: 0;
+		left: 0;
+	}
+	to {
+		top: -20%;
+		left: -20%;
+	}
+}
+@keyframes woof1 {
+	0% {
+		visibility: visible;
+		left: 30%;
+		top: 125%;
+	}
+	25% {
+		left: 5%;
+		top: -25%;
+	}
+}
+@keyframes woof2 {
+	0% {
+		left: -25%;
+		top: 40%;
+	}
+	25% {
+		visibility: visible;
+		left: -25%;
+		top: 40%;
+	}
+	50%{
+		left: 125%;
+		top: 0%;
+	}
+}
+@keyframes woof3 {
+	0% {
+		left: 50%;
+		top: -25%;
+	}
+	50% {
+		visibility: visible;
+		left: 50%;
+		top: -25%;
+	}
+	75%{
+		left: 80%;
+		top: 125%;
+	}
+}
+@keyframes woof4 {
+	0% {
+		left: 125%;
+		top: 40%;
+	}
+	75% {
+		visibility: visible;
+		left: 125%;
+		top: 40%;
+	}
+	100%{
+		left: -25%;
+		top: 80%;
+	}
+}
+@keyframes drop {
+	0% {
+		top: -100%;
+	}
+	100% {
+		top: 115%;
+	}
+}
+// Parallax
+.parallax {
+	.parallax__item {
+		visibility: hidden;
+		opacity: 0;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		@include transition(all .3s ease);
+		.parallax--base {
+			top: 50%;
+			left: 50%;
+			width: 120%;
+			height: 120%;
+		}
+		&.green {
+			.green--l1 {
+				background-image: url('../img/parallax/1-bg.jpg');
+			}
+			.green--l2 {
+			}
+			.green--l3 {
+			}
+			.green__item {
+				display: block;
+				position: absolute;
+				height: auto;
+				img {
+					width: 100%;
+					height: auto;
+				}
+				&.woof1 {
+					visibility: hidden;
+					left: 5%;
+					top: -25%;
+					animation: woof1 90s linear infinite;
+					@include transform(rotate(-25deg));
+				}
+				&.woof2 {
+					visibility: hidden;
+					left: 125%;
+					top: 0%;
+					animation: woof2 90s linear infinite;
+					@include transform(rotate(70deg));
+				}
+				&.woof3 {
+					visibility: hidden;
+					left: 80%;
+					top: 125%;
+					animation: woof3 90s linear infinite;
+					@include transform(rotate(160deg));
+				}
+				&.woof4 {
+					visibility: hidden;
+					left: 125%;
+					top: 0%;
+					animation: woof4 90s linear infinite;
+					@include transform(rotate(-110deg));
+				}
+			}
+		}
+		&.blue {
+			.blue--l1 {
+				background-image: url('../img/parallax/2-bg.jpg');
+				background-size: 100% 100%;
+			}
+			.blue__item {
+				position: absolute;
+				display: block;
+				height: auto;
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+			.drop-wrap {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: -100%;
+				&.drop-wrap1 {
+					animation: drop 1.2s linear infinite;
+				}
+				&.drop-wrap2 {
+					animation: drop 1.2s linear .6s infinite;
+				}
+				&.drop-wrap3 {
+					animation: drop .8s linear .3s infinite;
+				}
+				&.drop-wrap4 {
+					animation: drop .8s linear .7s infinite;
+				}
+				i[class^="drop"] {
+					position: absolute;
+				}
+				.drop-a {
+					background: url('../img/parallax/2-i4.png');
+					width: 5px;
+					height: 50px;
+				}
+				.drop-b {
+					background: url('../img/parallax/2-i3.png');
+					width: 16px;
+					height: 99px;
+				}
+				.drop1  {left:0%;top:12%}
+				.drop2  {left:8%;top:44%}
+				.drop3  {left:14%;top:87%}
+				.drop4  {left:20%;top:4%}
+				.drop5  {left:26%;top:32%}
+				.drop6  {left:36%;top:60%}
+				.drop7  {left:48%;top:55%}
+				.drop8  {left:54%;top:30%}
+				.drop9  {left:66%;top:8%}
+				.drop10 {left:76%;top:68%}
+				.drop11 {left:86%;top:92%}
+				.drop12 {left:98%;top:88%}
+				.drop13 {left:0%;top:14%}
+				.drop14 {left:12%;top:55%}
+				.drop15 {left:16%;top:24%}
+				.drop16 {left:24%;top:86%}
+				.drop17 {left:31%;top:42%}
+				.drop18 {left:38%;top:37%}
+				.drop19 {left:45%;top:11%}
+				.drop20 {left:56%;top:89%}
+				.drop21 {left:62%;top:52%}
+				.drop22 {left:78%;top:90%}
+				.drop23 {left:84%;top:72%}
+				.drop24 {left:98%;top:33%}
+			}
+		}
+		&.orange {
+			.orange--l1 {
+				background-image: url('../img/parallax/3-i2.jpg');
+			}
+			.orange__item {
+				position: absolute;
+				display: block;
+				height: auto;
+				z-index: 3;
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+			.wall {
+				bottom: 0;
+				left: 0;
+				width: 120%;
+				height: 75%;
+				background-image: url('../img/parallax/3-i1.png');
+				background-position: bottom center;
+				z-index: 1;
+			}
+			.wall-top {
+				left: 0;
+				top: 24%;
+				width: 100%;
+				height: 101px;
+				background-image: url('../img/parallax/3-i3.png');
+				z-index: 2;
+			}
+			.wall-cat {
+				bottom: 75%;
+				left: 60%
+			}
+			.ground {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 120px;
+				background-image: url('../img/parallax/3-i4.png');
+				background-repeat: repeat-x;
+				background-position: top left;
+				z-index: 3;
+			}
+		}
+	}
+	.parallax--layer {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+}

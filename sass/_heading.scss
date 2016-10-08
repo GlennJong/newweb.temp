@@ -1,0 +1,215 @@
+.heading {
+	z-index: 1;
+	.heading__myname {
+		margin-bottom: 24px;
+		.heading__myname__ball {
+			top: -8px;
+			left: 12px;
+			@include transition(all 1s ease);
+			@include transform(scale(0,1));
+			span {
+				border-color: #FFF;
+				color: #FFF;
+			}
+		}
+	}
+	.heading__welcome {
+		visibility: hidden;
+		opacity: 0;
+		margin-bottom: 12px;
+		color: #FFF;
+		font-size: 24px;
+		text-align: center;
+		@include transition(all 1s ease);
+	}
+	.heading__nav {
+		height: 0;
+		overflow: hidden;
+		@include transition(all 1s ease);
+		button {
+			@include transition(all .3s ease);
+			&:hover {
+				@include transform(scale(1.1,1.1));
+			}
+		}
+	}
+	.heading__progress {
+		@include transition(all 1s ease);
+	}
+	.heading__bg {
+		position: absolute;
+		top:0; left:0;
+		width:100%; height:100%;
+		background: #DDD;
+		z-index: -1;
+		@include transition(all 1s ease);
+	}
+}
+
+// After Opening
+// .heading {
+body.load-done .heading.finish {
+	.heading__myname {
+		.heading__myname__ball {
+			@include transform(scale(1,1));
+		}
+	}
+	.heading__welcome {
+		visibility: visible;
+		opacity: 1;
+		top: 0;
+	}
+	.heading__nav {
+		height: 200px;
+	}
+	.heading__bg {
+		visibility: hidden;
+		opacity:0;
+		// border-radius: 50%;
+		// width:20px; height:20px;
+	}
+	.heading__nav {
+		svg path {
+			animation: svgTrim 2s ease 1s forwards;
+			&#p8 {
+				animation: svgTrimP8 2s ease 1s forwards;
+			}
+			&#circle {
+				animation: svgTrimCircle .3s ease 2s forwards;
+			}
+		}
+	}
+	.heading__progress {
+		visibility: hidden;
+		opacity:0;
+	}
+}
+
+// SVG Animation
+@keyframes svgTrim {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes svgTrimP8 {
+	to {
+		stroke-dasharray: 20 10;
+    	stroke-dashoffset: -6;
+	}
+}
+@keyframes svgTrimCircle {
+	to {
+		opacity: 1;
+	}
+}
+
+// My Name
+.myname {
+	display: block;
+	svg {
+		width: 560px;
+		height: 190px;
+		path {
+			-webkit-clip-path: url(#glenn);
+			clip-path: url(#glenn);
+			fill: none;
+			stroke: #FFF;
+			stroke-width: 26px;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			&#g {
+				stroke-dasharray: 470;
+				stroke-dashoffset: 470;
+	    		animation: svgTrim 1s ease .5s forwards;
+			}
+			&#l {
+				stroke-dasharray: 190;
+				stroke-dashoffset: 190;
+	    		animation: svgTrim .4s ease 1.5s forwards;
+			}
+			&#e {
+				stroke-dasharray: 240;
+				stroke-dashoffset: 240;
+	    		animation: svgTrim .6s ease 1.9s forwards;
+			}
+			&#n1 {
+				stroke-dasharray: 270;
+				stroke-dashoffset: 270;
+	    		animation: svgTrim .6s ease 2.5s forwards;
+			}
+			&#n2 {
+				stroke-dasharray: 270;
+				stroke-dashoffset: 270;
+	    		animation: svgTrim .6s ease 3.1s forwards;
+			}
+		}
+	}
+}
+
+// Nav buttom
+.nav__btn {
+	svg {
+		width: 110px;
+		height: 110px;
+		path {
+			fill: none;
+			stroke: #FFF;
+			stroke-width: 4px;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			&#p1 {
+				stroke-dasharray: 315;
+				stroke-dashoffset: 315;
+			}
+			&#p2 {
+				stroke-dasharray: 100;
+				stroke-dashoffset: 100;
+			}
+			&#p3 {
+				stroke-dasharray: 380;
+				stroke-dashoffset: 380;
+			}
+			&#p4 {
+				stroke-dasharray: 390;
+				stroke-dashoffset: 390;
+			}
+			&#p5 {
+				stroke-dasharray: 310;
+				stroke-dashoffset: 310;
+			}
+			&#p6 {
+				stroke-dasharray: 120;
+				stroke-dashoffset: 120;
+			}
+			&#p7 {
+				stroke-dasharray: 365;
+				stroke-dashoffset: 365;
+			}
+			&#p8 {
+				stroke-dasharray: 92;
+				stroke-dashoffset: 92;
+			}
+			&#p9 {
+				stroke-dasharray: 16;
+				stroke-dashoffset: 16;
+			}
+			&#p10 {
+				stroke-dasharray: 155;
+				stroke-dashoffset: 155;
+			}
+			&#p11 {
+				stroke-dasharray: 300;
+				stroke-dashoffset: 300;
+			}
+			&#p12 {
+				stroke-dasharray: 40;
+				stroke-dashoffset: 40;
+			}
+			&#circle {
+				stroke-width: 0;
+				fill: #FFF;
+				opacity: 0;
+			}
+		}
+	}
+}
