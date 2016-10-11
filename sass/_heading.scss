@@ -40,7 +40,7 @@
 		position: absolute;
 		top:0; left:0;
 		width:100%; height:100%;
-		background: #DDD;
+		background-color: hsl(0,0%,80%);
 		z-index: -1;
 		@include transition(all 1s ease);
 	}
@@ -65,8 +65,6 @@ body.load-done .heading.finish {
 	.heading__bg {
 		visibility: hidden;
 		opacity:0;
-		// border-radius: 50%;
-		// width:20px; height:20px;
 	}
 	.heading__nav {
 		svg path {

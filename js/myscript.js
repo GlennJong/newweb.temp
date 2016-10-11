@@ -192,73 +192,73 @@ function PictureView() {
 }
 
 // WebView
-function WebView() {
-    $webView      = $('.webView')
-    $webViewItem  = $('.webView__item')
-    $webClose     = $('.webView__close')
+function ProjectView() {
+    $projectView      = $('.projectView')
+    $projectViewItem  = $('.projectView__item')
+    $projectClose     = $('.projectView__close')
 
-    $webActive    = $('.webView__item.active') 
+    $projectActive    = $('.projectView__item.active') 
 
-    $controlPrev  = $webViewItem.find('.webView__view--control .prev')
-    $controlNext  = $webViewItem.find('.webView__view--control .next')
+    $controlPrev  = $projectViewItem.find('.projectView__view--control .prev')
+    $controlNext  = $projectViewItem.find('.projectView__view--control .next')
 
-    $webImgWrap   = $webViewItem.find('.img-wrap')
-    $webImg       = $webImgWrap.find('div')
+    $projectImgWrap   = $projectViewItem.find('.img-wrap')
+    $projectImg       = $projectImgWrap.find('div')
 
 
-    $webImgWrap.find('div:first-child').addClass('active')
-    $webImgWrap.find('div:nth-child(2)').addClass('next')
+    $projectImgWrap.find('div:first-child').addClass('active')
+    $projectImgWrap.find('div:nth-child(2)').addClass('next')
 
 
     // Close
-    $webClose.on('click',function() {
-        $webView.removeClass('active')
-        $webViewItem.removeClass('active')
+    $projectClose.on('click',function() {
+        $projectView.removeClass('active')
+        $projectViewItem.removeClass('active')
 
         // reset
-        $webImg.attr('class','')
-        $webImgWrap.find('div:first-child').addClass('active')
-        $webImgWrap.find('div:nth-child(2)').addClass('next')
+        $projectImg.attr('class','')
+        $projectImgWrap.find('div:first-child').addClass('active')
+        $projectImgWrap.find('div:nth-child(2)').addClass('next')
     })
     $(window).on('click',function(e) {
         var clickTarget = $(e.target)
-        if (clickTarget.is('.webView')) {
-            $webView.removeClass('active')
-            $webViewItem.removeClass('active')
+        if (clickTarget.is('.projectView')) {
+            $projectView.removeClass('active')
+            $projectViewItem.removeClass('active')
         }
     })
 
     function nameImg() {
-        var $webImgActive = $webImgWrap.find('div.active'),
-            $webImgPrev   = $webImgActive.prev(),
-            $webImgNext   = $webImgActive.next()
-        $webImgPrev.attr('class','prev')
-        $webImgNext.attr('class','next')
+        var $projectImgActive = $projectImgWrap.find('div.active'),
+            $projectImgPrev   = $projectImgActive.prev(),
+            $projectImgNext   = $projectImgActive.next()
+        $projectImgPrev.attr('class','prev')
+        $projectImgNext.attr('class','next')
     }
 
     $controlPrev.on('click', function() {
-        $webImgWrap.each(function() {
-            var $webImgActive = $(this).find('div.active'),
-                $webImg       = $(this).find('div')
-            if ($webImgActive.index() === 0) {
+        $projectImgWrap.each(function() {
+            var $projectImgActive = $(this).find('div.active'),
+                $projectImg       = $(this).find('div')
+            if ($projectImgActive.index() === 0) {
                 return
             }
             else {
-                $webImgActive.removeClass('active').prev().attr('class','active')
+                $projectImgActive.removeClass('active').prev().attr('class','active')
                 nameImg()
             }
         })
     })
 
     $controlNext.on('click', function() {
-        $webImgWrap.each(function() {
-            var $webImgActive = $(this).find('div.active'),
-                $webImg       = $(this).find('div')
-            if ($webImgActive.index() === $webImg.length - 1) {
+        $projectImgWrap.each(function() {
+            var $projectImgActive = $(this).find('div.active'),
+                $projectImg       = $(this).find('div')
+            if ($projectImgActive.index() === $projectImg.length - 1) {
                 return
             }
             else {
-                $webImgActive.removeClass('active').next().attr('class','active')
+                $projectImgActive.removeClass('active').next().attr('class','active')
                 nameImg()
             }
         })
@@ -294,7 +294,7 @@ $(document).ready(function() {
     PictureView()
 
     // webView
-    WebView()
+    ProjectView()
 
     // Style Control
     $('#styleControl').on('click','button', function() {
@@ -382,26 +382,21 @@ $(document).ready(function() {
     })
 
     // Web Control
-    $('.webControl').on('click', function() {
-        var webTarget   = $(this).attr('href'),
-            $webTarget  = $(webTarget)
+    $('.projectControl').on('click', function() {
+        var projectTarget   = $(this).attr('href'),
+            $projectTarget  = $(projectTarget)
 
-        $('.webView').addClass('active')
-        $webTarget.addClass('active')
+        $('.projectView').addClass('active')
+        $projectTarget.addClass('active')
 
         // lazyload
-        lazyload($webTarget)
+        lazyload($projectTarget)
     })
 
     // illustration delay
     function itemDelay() {
-        $illusItem = $('#illus').find('.item')
-        $photosItem = $('#photos').find('.item')
-        $illusItem.each(function() {
-            var itemNum = $(this).index() * 0.1
-            $(this).css('animation-delay', itemNum + 's')
-        })
-        $photosItem.each(function() {
+        $item = $('.section').find('.item')
+        $item.each(function() {
             var itemNum = $(this).index() * 0.1
             $(this).css('animation-delay', itemNum + 's')
         })

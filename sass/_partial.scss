@@ -129,6 +129,10 @@
 .modal {
 	#aboutSite {
 		max-width: 750px;
+		.social {
+			margin-top: 24px;
+			text-align: center;
+		}
 	}
 }
 
@@ -145,30 +149,60 @@
 	}
 }
 #illus {
-	height: 100%;
-	overflow-y: auto;
-	overflow-x: hidden;
-	-webkit-overflow-scrolling: touch;
 	.illus__content {
 		display: none;
 		&.active {
 			display: block;
 		}
+		h1 {
+			margin-bottom: 24px;
+			font-size: 24px;
+			color: hsl(0,0%,35%);
+		}
 		.illus__content--item {
 			visibility: hidden;
 			position: relative;
+			margin-bottom: 48px;
 			animation: illusItem .3s ease forwards;
 			.item__img {
+				width: 100%;
 				height: 200px;
+				overflow: hidden;
+				img {
+					display: block;
+					position: absolute;
+					top: 50%; left: 50%;
+					max-width: 200%;
+					max-height: 200%;
+					@include transform(translate(-50%, -50%));
+				}
+				i.img-mask {
+					border: 3px solid transparent;
+			  		border-image: url('../svg/img-cover.svg') 12 round;
+			  		z-index: 1;
+			  		@include box-sizing(border-box);
+				}
+			}
+			.item__info {
+				position: absolute;
+				bottom: 4px;
+				right: 50%;
+				margin-right: -13px;
+				.ball {
+					span {
+						border-color: hsl(0,0%,80%);
+						color: hsl(0,0%,80%);
+					}
+					&.active span, &:hover span {
+						border-color: hsl(0,0%,90%);
+						color: hsl(0,0%,90%);
+					}
+				}
 			}
 		}
 	}
 }
 #photos {
-	height: 100%;
-	overflow-y: auto;
-	overflow-x: hidden;
-	-webkit-overflow-scrolling: touch;
 	.photos__content {
 		display: none;
 		&.active {
@@ -178,45 +212,230 @@
 			visibility: hidden;
 			position: relative;
 			animation: illusItem .3s ease forwards;
-			.photos__content--item__wrap {
+			.item__wrap {
 				padding: 6px;
 				background: #FFF;
 				box-sizing: border-box;
 				@include box-shadow(0px 0px 4px hsla(0,0%,0%,.4));
 			}
 			.item__img {
+				width: 100%;
 				height: 220px;
+				img {
+					display: block;
+					position: absolute;
+					top: 50%; left: 50%;
+					max-width: 200%;
+					max-height: 200%;
+					@include transform(translate(-50%, -50%));
+				}
 				i.img-mask {
 					border: 0;
+				}
+			}
+			.item__info {
+				margin-top: 8px;
+				text-align: center;
+				.ball {
+					span {
+						border-color: hsl(0,0%,35%);
+						color: hsl(0,0%,35%);
+					}
+					&.active span, &:hover span {
+						border-color: hsl(0,0%,50%);
+						color: hsl(0,0%,50%);
+					}
 				}
 			}
 		}
 	}
 }
+#web {
+	.web__content {
+		display: none;
+		&.active {
+			display: block;
+		}
+		.web__content--item {
+			visibility: hidden;
+			position: relative;
+			animation: illusItem .3s ease forwards;
+			.item__wrap {
+				position: relative;
+				border-radius: 12px 12px 4px 4px;
+				padding-top: 24px;
+				background: hsl(0,0%,80%);
+				box-sizing: border-box;
+				@include box-shadow(0px 0px 4px hsla(0,0%,0%,.4));
+				&:before, &:after {
+					content: "";
+					position: absolute;
+					top: 6px;
+					border-radius: 50%;
+					width: 12px;
+					height: 12px;
+				}
+				&:before {
+					left: 12px;
+					background: $orange;
+				}
+				&:after {
+					left: 30px;
+					background: $green;
+				}
+			}
+			.item__img {
+				position: relative;
+				min-height: 100px;
+				border-radius: 0px 0px 4px 4px;
+				img {
+					display: block;
+					width: 100%;
+					height: auto;
+				}
+				i.img-mask {
+					border: 0;
+				}
+			}
+			.item__info {
+				position: absolute;
+				bottom: 4px;
+				right: 50%;
+				margin-right: -13px;
+				.bubble {
+					font-family: Microsoft JhengHei, arial, helvetica, san-serif;
+				}
+				.ball {
+					span {
+						border-color: hsl(0,0%,90%);
+						color: hsl(0,0%,90%);
+					}
+					&.active span, &:hover span {
+						border-color: hsl(0,0%,100%);
+						color: hsl(0,0%,100%);
+					}
+				}
+			}
+		}
+	}
+}
+// About
+@keyframes buttonBounce {
+	0% {
+		@include transform(scale(.1,.1));
+	}
+	75% {
+		@include transform(scale(1.05, 1.05));
+	}
+	100% {
+		@include transform(scale(1, 1));
+	}
+}
+@keyframes showContent {
+	to {
+		opacity: 1;
+	}
+}
 #about {
 	.about__content {
 		.board {
-			position: fixed;
-			left: 50%;
-			bottom: 0;
-			margin-left: -300px;
+			opacity: 0;
+			position: relative;
+			margin: 0 auto;
+			margin-top: 300px;
 			width: 650px;
 			height: 650px;
+			@include transition(all .5s ease);
 			.board--content {
 				position: absolute;
 				top: 30px;
 				left: 140px;
 				width: 380px;
 				height: 300px;
-				p {
-					font-family: Microsoft JhengHei, arial, helvetica, san-serif;
-					line-height: 1.5em;
-					font-size: 14px;
+				.board--content__item {
+					display: none;
+					opacity: 0;
+					&.active {
+						display: block;
+						animation: showContent .3s ease forwards;
+					}
+					&#who {
+						p {
+							font-family: Microsoft JhengHei, arial, helvetica, san-serif;
+							line-height: 1.5em;
+							font-size: 15px;
+							color: hsl(0,0%,35%);
+						}
+					}
+					&#skills {
+						text-align: center;
+						.skills__icon {
+							display: inline-block;
+							vertical-align: middle;
+							position: relative;
+							margin: 12px 8px;
+							.bubble {
+								position: absolute;
+								left: 50%; bottom: 100%;
+								width: 120px;
+								margin-left: -60px;
+								margin-bottom: 24px;
+								color: hsl(0,0%,35%);
+								font-size: 16px;
+								z-index: 2;
+								@include filter(drop-shadow(0px 0px 6px hsla(0,0%,0%,.25)));
+							}
+							.ball {
+								width: 60px;
+								height: 60px;
+								&.active i.icon, &:hover i.icon {
+									animation: ballJump 1s linear infinite;
+								}
+								i.icon {
+									display: block;
+									position: absolute;
+									bottom: 0;
+									width: 100%;
+									height: 100%;
+									background-image: url('../svg/icons.svg');
+									background-size: auto 100%;
+									@include transform-origin(50%, 100%);
+									&.icon-css3   {background-position: 0px 0px};
+									&.icon-html5  {background-position: -60px 0px};
+									&.icon-js     {background-position: -120px 0px};
+									&.icon-jquery {background-position: -180px 0px};
+									&.icon-ps     {background-position: -240px 0px};
+									&.icon-ai     {background-position: -300px 0px};
+									&.icon-sai    {background-position: -360px 0px};
+									&.icon-subtext{background-position: -420px 0px};
+								}
+							}
+						}
+					}
+					&#contact {
+						p {
+							font-family: Microsoft JhengHei, arial, helvetica, san-serif;
+							line-height: 1.5em;
+							font-size: 15px;
+							color: hsl(0,0%,35%);
+						}
+						.social {
+							margin-top: 24px;
+							text-align: center;
+						}
+					}
+				}
+				h2 {
+					margin-top: 12px;
+					margin-bottom: 12px;
+					text-align: center;
+					font-size: 32px;
+					color: hsl(0,0%,35%);
 				}
 			}
 			.board--btn {
 				position: absolute;
-				bottom: 50px;
+				bottom: 80px;
 				left: 250px;
 				width: 160px;
 				height: 200px;
@@ -227,6 +446,7 @@
 					font-size: 34px;
 					text-align: center;
 					color: hsl(0,0%,35%);
+					@include transform(scale(0, 0));
 					&:hover {
 						color: #FFF;
 					}
@@ -237,9 +457,10 @@
 				top:0; left:0;
 				width: 100%;
 				height: 100%;
-  				-webkit-clip-path: polygon(22% 54.5%, 24% 53.5%, 80.5% 53.5%, 78% 60%, 78.5% 63%, 69.5% 58%, 68% 58%, 69.5% 89%, 69.5% 89%, 70% 96%, 31% 96%, 33% 79%, 33.5% 58%, 27.5% 63.5%);
-  				clip-path: 		   polygon(22% 54.5%, 24% 53.5%, 80.5% 53.5%, 78% 60%, 78.5% 63%, 69.5% 58%, 68% 58%, 69.5% 89%, 69.5% 89%, 70% 96%, 31% 96%, 33% 79%, 33.5% 58%, 27.5% 63.5%);
+  				-webkit-clip-path: polygon(22% 54.5%, 24% 53.5%, 80.5% 53.5%, 78% 60%, 78% 63%, 77.5% 63%, 70.5% 58%, 68% 58%, 69.5% 89%, 69.5% 89%, 70% 96%, 31% 96%, 33% 79%, 33.5% 58%, 27% 64%, 25% 59%);
+  				clip-path: 		   polygon(22% 54.5%, 24% 53.5%, 80.5% 53.5%, 78% 60%, 78% 63%, 77.5% 63%, 70.5% 58%, 68% 58%, 69.5% 89%, 69.5% 89%, 70% 96%, 31% 96%, 33% 79%, 33.5% 58%, 27% 64%, 25% 59%);
   				overflow: hidden;
+  				z-index: -2;
   				div {
   					visibility: hidden;
   					opacity: 0;
@@ -255,7 +476,6 @@
 					top:0; left:0;
 					width: 100%;
 					height: 100%;
-					background-image: linear-gradient($green 70%, transparent 30%);
 					background-size: 100% 14px;
 					background-repeat: repeat-y;
 				}
@@ -264,20 +484,6 @@
 					top:0; left:0;
 					width: 100%;
 					height: 100%;
-					background-image: linear-gradient(90deg, transparent 0%, transparent 10%,
-						                                     rgba($blue,.6) 10%, rgba($blue,.6) 20%,
-						                                     transparent 20%, transparent 30%,
-						                                     rgba($blue,.6) 30%, rgba($blue,.6) 70%,
-						                                     transparent 70%, transparent 80%,
-						                                     rgba($blue,.6) 80%, rgba($blue,.6) 90%,
-						                                     transparent 90%, transparent 100%),
-					                  linear-gradient(0deg,  transparent 0%, transparent 10%,
-						                                     rgba($blue,.6) 10%, rgba($blue,.6) 20%,
-						                                     transparent 20%, transparent 30%,
-						                                     rgba($blue,.6) 30%, rgba($blue,.6) 70%,
-						                                     transparent 70%, transparent 80%,
-						                                     rgba($blue,.6) 80%, rgba($blue,.6) 90%,
-						                                     transparent 90%, transparent 100%);
 					background-size: 20px 20px;
 					background-size: 50px 50px;
 					background-repeat: repeat;
@@ -287,9 +493,6 @@
 					top:0; left:0;
 					width: 100%;
 					height: 100%;
-					background-image: radial-gradient( white 15%, transparent 16% ),
-						              radial-gradient( white 15%, transparent 16% ),
-						              linear-gradient( $orange 0, $orange );
 					background-size: 60px 60px;
 					background-position: 0 0, 30px 30px, 0 0;
 				}
@@ -301,7 +504,18 @@
 				height: 100%;
 				background-image: url('../svg/board.svg');
 				background-size: 100% 100%;
-				z-index: 0;
+				z-index: -1;
+			}
+		}
+		&.active {
+			.board {
+				margin-top: 0;
+				opacity: 1;
+			}
+			.board--btn {
+				button:nth-child(1) { animation: buttonBounce .5s ease .6s forwards;}
+				button:nth-child(2) { animation: buttonBounce .5s ease .8s forwards;}
+				button:nth-child(3) { animation: buttonBounce .5s ease 1s forwards;}
 			}
 		}
 	}

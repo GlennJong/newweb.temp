@@ -1,0 +1,336 @@
+@media (max-width: 1280px) {
+	#illus {
+		.illus__content {
+			.illus__content--item {
+				.item__img {
+					height: 240px;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 767px) {
+	.myname svg {
+		width: 380px;
+		height: 125px;
+	}
+	.nav__btn svg {
+		width: 60px;
+		height: 60px;
+	}
+	.heading {
+		.heading__welcome {
+			font-size: 16px;
+		}
+	}
+	.nav {
+		.nav__btn p {
+			font-size: 16px;
+		}
+	}
+	body.load-done .heading.finish .heading__nav {
+		height: 100px;
+	}
+	.modal {
+		.modal__content {
+			p {
+				font-size: 14px;
+			}
+		}
+	}
+	.section {
+		padding: 60px 24px;
+		.section__title h1 {
+			font-size: 36px;
+		}
+	}
+	.projectView {
+		.projectView__item {
+			.projectView__view {
+				.projectView__view--mobile {
+				    border: 5px solid transparent;
+				    border-image: url("../svg/border.svg") 8 round;
+					.img-wrap {
+						width: 80px;
+						height: 142px;
+					}
+				}
+				.projectView__view--pc {
+				    border: 5px solid transparent;
+				    border-image: url("../svg/border.svg") 30 round;
+				    padding: 4px;
+					.img-wrap {
+						width: 320px;
+						height: 172px;
+					}
+				}
+				.projectView__content {
+					.projectView__content--title {
+						h1 {
+							font-size: 18px;
+						}
+					}
+				}
+			}
+		}
+	}
+	.social {
+		.social__icon {
+			width: 30px;
+			height: 30px;
+			&.icon-telegram {background-position: 0px 0px;}
+			&.icon-facebook {background-position: -30px 0px;}
+			&.icon-tumblr   {background-position: -60px 0px;}
+			&.icon-codepen  {background-position: -120px 0px;}
+			&.icon-github   {background-position: -150px 0px;}
+		}
+	}
+	#illus {
+		.illus__content {
+			.illus__content--item {
+				.item__img {
+					height: 200px;
+				}
+			}
+		}
+	}
+	#photos {
+		.photos__content {
+			.photos__content--item {
+				.item__img {
+					height: 200px;
+				}
+			}
+		}
+	}
+	#about {
+		.about__content {
+			.board {
+				position: absolute;
+				bottom: 12px;
+				left: 50%;
+				margin-left: -240px;
+				width: 480px;
+				height: 480px;
+				.board--content {
+					top: 12px;
+					left: 100px;
+					width: 290px;
+					height: 300px;
+					.board--content__item {
+						&#who p {
+							font-size: 13px;
+						}
+						&#skills {
+							.skills__icon .ball {
+								width: 40px;
+								height: 40px;
+								i.icon {
+									&.icon-css3   {background-position: 0px 0px};
+									&.icon-html5  {background-position: -40px 0px};
+									&.icon-js     {background-position: -80px 0px};
+									&.icon-jquery {background-position: -120px 0px};
+									&.icon-ps     {background-position: -160px 0px};
+									&.icon-ai     {background-position: -200px 0px};
+									&.icon-sai    {background-position: -240px 0px};
+									&.icon-subtext{background-position: -280px 0px};
+								}
+							}
+						}
+					}
+				}
+				.board--btn {
+					bottom: 12px;
+					left: 168px;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 480px) {
+	.myname svg {
+		width: 250px;
+		height: 72px;
+	}
+	.nav__btn svg {
+		width: 40px;
+		height: 40px;
+	}
+	.home svg {
+		width: 40px;
+		height: 40px;
+	}
+	.heading {
+		.heading__welcome {
+			font-size: 13px;
+		}
+	}
+	.nav {
+		.nav__btn {
+			margin: 6px;
+			p {
+				font-size: 12px;
+			}
+		} 
+	}
+	.main .main__back {
+		top: 6px;
+	}
+	body.load-done .heading.finish .heading__nav {
+		height: 72px;
+	}
+	@keyframes subnav-btn1 {
+		to { left: 200px; bottom: -80px }
+	}
+	@keyframes subnav-btn2 {
+		to { left: 134px; bottom: -110px }
+	}
+	@keyframes subnav-btn3 {
+		to { left: 60px; bottom: -106px }
+	}
+	@keyframes subnav-btn4 {
+		to { left: -6px; bottom: -76px }
+	}
+	.subnav {
+		width: 160px;
+		height: 160px;
+		&:before {
+			width: 40px;
+			height: 40px;
+			top: 12px;
+			right: 60px;
+		}
+		&.open {
+			left: -80px;
+			top: -80px
+		}
+		.subnav__button {
+			margin-left: -33px;
+			width: 60px;
+			height: 60px;
+			.icon {
+				width: 50px;
+				height: 50px;
+			}
+			span {
+				display: none;
+			}
+		}
+		&.active {
+			.subnav__button {
+				width: 60px;
+				height: 60px;
+				.icon {
+					width: 40px;
+					height: 40px;
+				}
+				&:nth-child(2) {left: 200px; bottom: -80px}
+				&:nth-child(3) {left: 134px; bottom: -110px}
+				&:nth-child(4) {left: 60px; bottom: -106px}
+				&:nth-child(5) {left: -6px; bottom: -76px}
+			}
+		}
+	}
+	.section {
+		padding: 60px 12px;
+		.section__title h1 {
+			font-size: 28px;
+		}
+	}
+	.projectView {
+		.projectView__item {
+			.projectView__view {
+				.projectView__view--mobile {
+					display: none;
+				}
+				.projectView__view--pc {
+				    border: 5px solid transparent;
+				    border-image: url("../svg/border.svg") 16 round;
+				    padding: 4px;
+					.img-wrap {
+						width: 280px;
+						height: 151px;
+					}
+				}
+				.projectView__content {
+					.projectView__content--title {
+						h1 {
+							font-size: 16px;
+						}
+					}
+				}
+			}
+		}
+	}
+	.social {
+		.social__icon {
+			margin: 0px 4px;
+		}
+	}
+	#illus {
+		.illus__content {
+			.illus__content--item {
+				.item__img {
+					height: 200px;
+				}
+			}
+		}
+	}
+	#photos {
+		.photos__content {
+			.photos__content--item {
+				.item__img {
+					height: 200px;
+				}
+			}
+		}
+	}
+	#about {
+		.about__content {
+			.board {
+				margin-left: -200px;
+				width: 400px;
+				height: 400px;
+				.board--content {
+					top: 12px;
+					left: 70px;
+					width: 270px;
+					height: 180px;
+					overflow: auto;
+					h2 {
+						font-size: 20px;
+						margin-top: 6px;
+						margin-bottom: 6px;
+					}
+					.board--content__item {
+						&#who p {
+							font-size: 12px;
+						}
+						&#skills {
+							h2 {
+								margin-bottom: 36px;
+							}
+							.skills__icon {
+								margin: 6px 3px;
+
+							}
+						}
+						&#contact {
+							p {
+								font-size: 12px;
+							}
+						}
+					}
+				}
+				.board--btn {
+					bottom: 0px;
+					left: 120px;
+					height: 180px;
+					button {
+						font-size: 24px;
+					}
+				}
+			}
+		}
+	}
+}
