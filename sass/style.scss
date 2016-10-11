@@ -55,6 +55,20 @@ button {
 // Parallax
 @import '_parallax';
 
+.home {
+	svg {
+		width: 60px;
+		height: 60px;
+		polyline {
+			fill: none;
+			stroke: hsl(0,0%,40%);
+			stroke-width: 9px;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+	}
+}
+
 // Main
 .main {
 	position: absolute;
@@ -78,28 +92,6 @@ button {
 		position: absolute;
 		right: 12px;
 		top: 12px;
-		svg {
-			width: 60px;
-			height: 60px;
-			polyline {
-				fill: none;
-				stroke: hsl(0,0%,40%);
-				stroke-width: 9px;
-				stroke-linecap: round;
-				stroke-linejoin: round;
-			}
-		}
-		&:hover {
-			polyline {
-				stroke: $orange;
-			}
-		}
-	}
-	.main__subnav {
-		// position: absolute;
-		// top: 0px;
-		// left: 0px;
-		// @include transition(all .3s ease);
 	}
 	.main__section {
 		visibility: hidden;
@@ -119,29 +111,52 @@ button {
 // Partial
 @import '_partial';
 
+// RWD
+@import '_rwd';
+
 
 // style control
 #styleControl {
+	visibility: hidden;
+	opacity: 0;
 	position: absolute;
-	bottom: 12px;
+	bottom: 24px;
 	right: 12px;
 	z-index: 1;
+	@include transition(all .3s ease);
 	button {
+		display: none;
 		opacity: .5;
+		margin: 0px 4px;
+		border-radius: 50%;
 		width: 30px;
 		height: 30px;
+		@include transform(scale(0,0));
 		&:hover {
 			opacity: 1;
 		}
 		&.green {
+			border: 1px solid darken($green, 20%);
 			background: $green;
+			animation: buttonBounce .3s ease forwards;
 		}
 		&.blue {
+			border: 1px solid darken($blue, 15%);
 			background: $blue;
+			animation: buttonBounce .3s ease .2s forwards;
 		}
 		&.orange {
+			border: 1px solid darken($orange, 20%);
 			background: $orange;
+			animation: buttonBounce .3s ease.4s forwards;
 		}
+	}
+}
+body.load-done .heading.finish + #styleControl {
+	visibility: visible;
+	opacity: 1;
+	button {
+		display: inline-block;
 	}
 }
 body#green {
@@ -162,8 +177,43 @@ body#green {
 			hr { background: $green}
 		}
 	}
+	.home:hover {
+		svg polyline {
+			stroke: $green;
+		}
+	}
+	.close:hover {
+		&:before, &:after {
+			background: $green;
+		}
+	}
+	.clothe {
+		#who {
+			background-image: linear-gradient($green 70%, transparent 30%);
+		}
+		#skills {
+			background-image: linear-gradient(90deg, transparent 0%, transparent 10%,
+				                                     rgba($green,.6) 10%, rgba($green,.6) 20%,
+				                                     transparent 20%, transparent 30%,
+				                                     rgba($green,.6) 30%, rgba($green,.6) 70%,
+				                                     transparent 70%, transparent 80%,
+				                                     rgba($green,.6) 80%, rgba($green,.6) 90%,
+				                                     transparent 90%, transparent 100%),
+			                  linear-gradient(0deg,  transparent 0%, transparent 10%,
+				                                     rgba($green,.6) 10%, rgba($green,.6) 20%,
+				                                     transparent 20%, transparent 30%,
+				                                     rgba($green,.6) 30%, rgba($green,.6) 70%,
+				                                     transparent 70%, transparent 80%,
+				                                     rgba($green,.6) 80%, rgba($green,.6) 90%,
+				                                     transparent 90%, transparent 100%);
+		}
+		#contact {
+			background-image: radial-gradient( white 15%, transparent 16% ),
+				              radial-gradient( white 15%, transparent 16% ),
+				              linear-gradient( $green 0, $green );
+		}
+	}
 }
-
 body#blue {
 	.parallax .blue {
 		visibility: visible;
@@ -182,8 +232,43 @@ body#blue {
 			hr { background: $blue}
 		}
 	}
+	.home:hover {
+		svg polyline {
+			stroke: $blue;
+		}
+	}
+	.close:hover {
+		&:before, &:after {
+			background: $blue;
+		}
+	}
+	.clothe {
+		#who {
+			background-image: linear-gradient($blue 70%, transparent 30%);
+		}
+		#skills {
+			background-image: linear-gradient(90deg, transparent 0%, transparent 10%,
+				                                     rgba($blue,.6) 10%, rgba($blue,.6) 20%,
+				                                     transparent 20%, transparent 30%,
+				                                     rgba($blue,.6) 30%, rgba($blue,.6) 70%,
+				                                     transparent 70%, transparent 80%,
+				                                     rgba($blue,.6) 80%, rgba($blue,.6) 90%,
+				                                     transparent 90%, transparent 100%),
+			                  linear-gradient(0deg,  transparent 0%, transparent 10%,
+				                                     rgba($blue,.6) 10%, rgba($blue,.6) 20%,
+				                                     transparent 20%, transparent 30%,
+				                                     rgba($blue,.6) 30%, rgba($blue,.6) 70%,
+				                                     transparent 70%, transparent 80%,
+				                                     rgba($blue,.6) 80%, rgba($blue,.6) 90%,
+				                                     transparent 90%, transparent 100%);
+		}
+		#contact {
+			background-image: radial-gradient( white 15%, transparent 16% ),
+				              radial-gradient( white 15%, transparent 16% ),
+				              linear-gradient( $blue 0, $blue );
+		}
+	}
 }
-
 body#orange {
 	.parallax .orange {
 		visibility: visible;
@@ -200,6 +285,42 @@ body#orange {
 		.section__title {
 			h1 { color: $orange}
 			hr { background: $orange}
+		}
+	}
+	.home:hover {
+		svg polyline {
+			stroke: $orange;
+		}
+	} 
+	.close:hover {
+		&:before, &:after {
+			background: $orange;
+		}
+	}
+	.clothe {
+		#who {
+			background-image: linear-gradient($orange 70%, transparent 30%);
+		}
+		#skills {
+			background-image: linear-gradient(90deg, transparent 0%, transparent 10%,
+				                                     rgba($orange,.6) 10%, rgba($orange,.6) 20%,
+				                                     transparent 20%, transparent 30%,
+				                                     rgba($orange,.6) 30%, rgba($orange,.6) 70%,
+				                                     transparent 70%, transparent 80%,
+				                                     rgba($orange,.6) 80%, rgba($orange,.6) 90%,
+				                                     transparent 90%, transparent 100%),
+			                  linear-gradient(0deg,  transparent 0%, transparent 10%,
+				                                     rgba($orange,.6) 10%, rgba($orange,.6) 20%,
+				                                     transparent 20%, transparent 30%,
+				                                     rgba($orange,.6) 30%, rgba($orange,.6) 70%,
+				                                     transparent 70%, transparent 80%,
+				                                     rgba($orange,.6) 80%, rgba($orange,.6) 90%,
+				                                     transparent 90%, transparent 100%);
+		}
+		#contact {
+			background-image: radial-gradient( white 15%, transparent 16% ),
+				              radial-gradient( white 15%, transparent 16% ),
+				              linear-gradient( $orange 0, $orange );
 		}
 	}
 }

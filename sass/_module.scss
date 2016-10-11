@@ -84,6 +84,18 @@ img.lazyloaded {
     	&.row--tight > div { width: 33.33%}
 	}
 }
+@media (max-width: 768px) {
+	.row {
+    	&.row--slack > div { width: 50%}
+    	&.row--tight > div { width: 50%}
+	}
+}
+@media (max-width: 480px) {
+	.row {
+    	&.row--slack > div { width: 100%}
+    	&.row--tight > div { width: 100%}
+	}
+}
 
 // Jumping Ball
 @keyframes ballJump {
@@ -275,11 +287,7 @@ img.lazyloaded {
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
-	&:hover {
-		&:before, &:after {
-			background: $green;
-		}
-	}
+	z-index: 100;
 	&:before, &:after {
 		position: absolute;
 		top: 24px;
@@ -303,13 +311,13 @@ img.lazyloaded {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	// background: rgba($green,.85);
+	background: hsla(0,0%,14%,.25);
 	overflow: auto;
 	z-index: 99;
 	@include transition(all .3s ease);
 	.modal__content {
 		display: none;
-		margin: 5% auto;
+		margin: 20% auto;
 		border-radius: 12px;
 		overflow: hidden;
 		box-shadow: 0px 0px 12px hsla(0,0%,0%,.5);
@@ -318,7 +326,8 @@ img.lazyloaded {
 		p {
 			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
 			line-height: 1.5em;
-			font-size: 14px;
+			font-size: 16px;
+			color: hsl(0,0%,35%);
 		}
 		.modal__content--head {
 			
@@ -433,7 +442,7 @@ img.lazyloaded {
 }
 
 // Picture View
-.webView {
+.projectView {
 	// flexBox
     display: flex;
     display: -webkit-flex;
@@ -457,7 +466,7 @@ img.lazyloaded {
 		visibility: visible;
 		opacity: 1;
 	}
-	.webView__item {
+	.projectView__item {
 		display: none;
 		border-radius: 0;
 		width: 1024px;
@@ -467,7 +476,7 @@ img.lazyloaded {
 			animation: modalBounce .3s ease;
 			animation-fill-mode: forwards;
 		}
-		.webView__view {
+		.projectView__view {
 			text-align: center;
 	  		.img-wrap {
 	  			position: relative;
@@ -508,7 +517,7 @@ img.lazyloaded {
 					}
 				}
 	  		}
-			.webView__view--mobile {
+			.projectView__view--mobile {
 				display: inline-block;
 				vertical-align: bottom;
 				margin-right: 6px;
@@ -521,7 +530,7 @@ img.lazyloaded {
 					height: 355px;
 		  		}
 			}
-			.webView__view--pc {
+			.projectView__view--pc {
 				display: inline-block;
 				vertical-align: bottom;
 				border: 12px solid transparent;
@@ -533,8 +542,9 @@ img.lazyloaded {
 					height: 400px;
 				}
 			}
-			.webView__view--control {
+			.projectView__view--control {
 				margin-top: 24px;
+				margin-bottom: 12px;
 				button {
 					border-radius: 12px;
 					color: #FFF;
@@ -545,10 +555,11 @@ img.lazyloaded {
 				}
 			}
 		}
-		.webView__content {
+		.projectView__content {
+			padding: 0px 12px;
 			font-family: Microsoft JhengHei, arial, helvetica, san-serif;
 	  		color: #FFF;
-	  		.webView__content--title {
+	  		.projectView__content--title {
 	  			margin-bottom: 12px;
 		  		h1 {
 		  			display: inline-block;
@@ -589,6 +600,10 @@ img.lazyloaded {
 // Section
 .section {
 	padding: 60px;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
 	.section__title {
 		text-align: center;
 		h1 {
@@ -623,34 +638,17 @@ img.lazyloaded {
 	.item__img {
 		display: block;
 		position: relative;
-		width: 100%;
-		height: 200px;
 		overflow: hidden;
 		z-index: 1;
-		img {
-			display: block;
-			position: absolute;
-			top: 50%; left: 50%;
-			max-width: 200%;
-			max-height: 200%;
-			@include transform(translate(-50%, -50%));
-		}
 		i.img-mask {
 			display: block;
   			position: absolute;
   			top: 0; left: 0; right: 0;
   			width: 100%; height: 100%;
-			border: 3px solid transparent;
-	  		border-image: url('../svg/img-cover.svg') 12 round;
-	  		z-index: 1;
-	  		@include box-sizing(border-box);
 		}
 	}
 	.item__info {
-		position: absolute;
-		bottom: 4px;
-		right: 50%;
-		margin-right: -13px;
+		position: relative;
 		.bubble {
 			position: absolute;
 			left: 50%; bottom: 100%;
@@ -672,14 +670,35 @@ img.lazyloaded {
 			width: 26px;
 			height: 26px;
 			z-index: 2;
-			span {
-				border-color: hsl(0,0%,80%);
-				color: hsl(0,0%,80%);
-			}
-			&.active span, &:hover span {
-				border-color: hsl(0,0%,90%);
-				color: hsl(0,0%,90%);
-			}
+		}
+	}
+}
+
+// Social
+.social {
+	.social__icon {
+		display: inline-block;
+		margin: 0px 12px;
+		width: 40px;
+		height: 40px;
+		background-image: url('../svg/social.svg');
+		background-color: hsl(0,0%,50%);
+		background-size: auto 100%;
+		@include transition(all .3s ease);
+		&.icon-telegram {border-radius: 50%; background-position: 0px 0px;
+			&:hover {background-color: #00a5e3}
+		}
+		&.icon-facebook {border-radius: 3px; background-position: -40px 0px;
+			&:hover {background-color: #3c5a99}
+		}
+		&.icon-tumblr   {background-position: -80px 0px;
+			&:hover {background-color: #314358}
+		}
+		&.icon-codepen  {border-radius: 50%; background-position: -160px 0px;
+			&:hover {background-color: #222}
+		}
+		&.icon-github   {border-radius: 50%; background-position: -200px 0px;
+			&:hover {background-color: #820089}
 		}
 	}
 }
